@@ -951,7 +951,7 @@
   .nav-link-btn:hover::after { width: 100%; }
 
   /* Page fade transition */
-  #page-home, #page-alm, #page-training, #page-references, #page-about {
+  #page-home, #page-training, #page-references, #page-about {
     animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1);
   }
 
@@ -984,11 +984,36 @@
     max-width: 580px; line-height: 1.75;
   }
 
+  /* ALM overview block (merged from former ALM tab) */
+  .training-overview {
+    padding: 48px 48px 8px;
+    max-width: 820px;
+  }
+  .training-overview-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3.5vw, 38px);
+    letter-spacing: -1px; line-height: 1.1;
+    color: var(--text-primary); margin: 12px 0 24px;
+  }
+  .training-overview-title .g {
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .training-courses-label {
+    padding: 32px 48px 0;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--blue-bright);
+  }
+
   /* Course selector cards */
   .course-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 920px) {
+    .course-grid { grid-template-columns: repeat(2, 1fr); }
+    .course-card:nth-child(2n) { border-right: none; }
   }
 
   .course-card {
@@ -1196,6 +1221,107 @@
   @keyframes formkit-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 
   .sub-modal-form .formkit-alert-success { background: #d3fbeb; border: 1px solid #10bf7a; color: #0c905c; font-size: 13px; padding: 12px; border-radius: 4px; text-align: center; list-style: none; margin: 0; }
+
+
+  /* Observatory region toggle */
+  .obs-toggle-wrap { padding: 32px 48px 0; display: flex; justify-content: center; }
+  .obs-toggle { display: inline-flex; border: 1px solid var(--rule); }
+  .obs-toggle button {
+    padding: 12px 36px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; background: var(--white);
+    color: var(--text-muted); border: none; cursor: pointer; border-right: 1px solid var(--rule);
+    transition: all .2s;
+  }
+  .obs-toggle button:last-child { border-right: none; }
+  .obs-toggle button.active { background: var(--blue-deep); color: #fff; }
+  .obs-toggle button:hover:not(.active) { color: var(--blue-bright); }
+
+  /* Monogram tile */
+  .bank-mono {
+    width: 52px; height: 52px; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--rule); background: var(--off-white);
+    font-family: 'DM Serif Display', serif; font-size: 17px; letter-spacing: -0.5px;
+    background-image: var(--gradient); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .course-card.active .bank-mono { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); -webkit-text-fill-color: #fff; }
+
+  .obs-region { display: none; }
+  .obs-region.active { display: block; }
+
+
+  /* Enhanced comparison table with currency toggle */
+  .obs-fx-bar {
+    margin: 0 48px 0;
+    padding: 16px 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .obs-fx-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--blue-bright);
+  }
+  .obs-fx-right { display: flex; align-items: center; gap: 12px; }
+  .obs-ccy-toggle { display: inline-flex; border: 1px solid var(--rule); }
+  .obs-ccy-toggle button {
+    padding: 7px 18px; font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    background: var(--white); color: var(--text-muted); border: none; border-right: 1px solid var(--rule);
+    cursor: pointer; transition: all .2s;
+  }
+  .obs-ccy-toggle button:last-child { border-right: none; }
+  .obs-ccy-toggle button.active { background: var(--blue-deep); color: #fff; }
+
+  .obs-compare2 {
+    margin: 0 48px;
+    border: 1px solid var(--rule);
+    overflow-x: auto;
+  }
+  .obs-compare2 table {
+    width: 100%; border-collapse: collapse; font-size: 13px; min-width: 620px;
+  }
+  .obs-compare2 th {
+    padding: 14px 16px; text-align: left; background: var(--off-white);
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue-deep); border-bottom: 2px solid var(--rule);
+    white-space: nowrap;
+  }
+  .obs-compare2 th:first-child { width: 200px; border-right: 1px solid var(--rule); }
+  .obs-compare2 .row-group-header td {
+    padding: 9px 16px; font-size: 9px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--blue-bright);
+    background: #f0f6ff; border-top: 1px solid #cce0ff; border-bottom: 1px solid #cce0ff;
+    colspan: 4;
+  }
+  .obs-compare2 td {
+    padding: 13px 16px; border-bottom: 1px solid var(--rule);
+    color: var(--text-primary); font-variant-numeric: tabular-nums;
+    vertical-align: middle;
+  }
+  .obs-compare2 td:first-child {
+    font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    border-right: 1px solid var(--rule); background: var(--off-white);
+  }
+  .obs-compare2 tr:last-child td { border-bottom: none; }
+  .obs-compare2 .trend-up { color: #10b981; font-size: 11px; }
+  .obs-compare2 .trend-down { color: #ef4444; font-size: 11px; }
+  .obs-compare2 .na { color: var(--text-muted); font-style: italic; font-size: 12px; }
+  .obs-compare2 .pending { color: var(--amber,#f59e0b); font-size: 11px; }
+  .obs-footnote {
+    margin: 10px 48px 0;
+    font-size: 11px; font-weight: 300; color: var(--text-muted); line-height: 1.6;
+  }
+  .obs-footnote sup { font-size: 9px; }
+  @media (max-width: 768px) {
+    .obs-compare2 { margin: 0 24px; }
+    .obs-fx-bar { margin: 0 24px; }
+    .obs-footnote { margin: 10px 24px 0; }
+  }
 
   /* Observatory comparison table */
   .obs-compare { margin: 0 48px; border: 1px solid var(--rule); overflow-x: auto; }
@@ -1654,7 +1780,6 @@
   </div>
   <ul class="nav-links">
     <li><a href="#" onclick="showPage('home');return false;" class="nav-link-btn" id="nav-home-desktop">Home</a></li>
-    <li><a href="#" onclick="showPage('alm');return false;" class="nav-link-btn" id="nav-alm-desktop">ALM</a></li>
     <li><a href="#" onclick="showPage('training');return false;" class="nav-link-btn" id="nav-training-desktop">Training</a></li>
     <li><a href="#" onclick="showPage('observatory');return false;" class="nav-link-btn" id="nav-observatory-desktop">Observatory</a></li>
     <li><a href="#" onclick="goToResearch();return false;" class="nav-link-btn">Research</a></li>
@@ -1670,7 +1795,6 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#" onclick="showPage('home');toggleMenu();return false;">Home</a>
-  <a href="#" onclick="showPage('alm');toggleMenu();return false;">ALM</a>
   <a href="#" onclick="showPage('training');toggleMenu();return false;">Training</a>
   <a href="#" onclick="showPage('observatory');toggleMenu();return false;">Observatory</a>
   <a href="#" onclick="goToResearch();toggleMenu();return false;">Research</a>
@@ -1690,7 +1814,7 @@
       <div class="hero-subtitle">the Balance Sheet.</div>
       <div class="hero-desc">The open knowledge hub for Asset-Liability Management. Theory, regulation, and quantitative methods — in one place, for practitioners.</div>
       <div class="hero-actions">
-        <a href="#" onclick="showPage('alm');window.scrollTo(0,0);return false;" class="btn-primary">Explore Concepts</a>
+        <a href="#" onclick="showPage('training');window.scrollTo(0,0);return false;" class="btn-primary">Explore Training</a>
         <a href="#" onclick="showPage('observatory');window.scrollTo(0,0);return false;" class="btn-secondary">Banks Analysis</a>
       </div>
     </div>
@@ -1706,7 +1830,7 @@
   <span class="latest-strip-label">Latest</span>
   <a href="#" onclick="showPage('observatory');window.scrollTo(0,0);return false;">Observatory: HSBC · MSBAL · JPM — FY2025 analysis</a>
   <span class="sep">·</span>
-  <a href="#" onclick="showPage('training');window.scrollTo(0,0);return false;">New training: Liquidity (8 slides)</a>
+  <a href="#" onclick="showPage('training');window.scrollTo(0,0);return false;">New training: Understand a Bank&rsquo;s Business (14 slides)</a>
   <span class="sep">·</span>
   <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6717060" target="_blank">Working paper v0.6 on SSRN</a>
 </div>
@@ -1720,10 +1844,10 @@
   <div class="section-title">Four pillars of <span class="g">ALM knowledge.</span></div>
   <div class="section-desc">Everything a practitioner needs — concepts, models, research, and regulatory frameworks — in one open resource.</div>
   <div class="pillars-grid reveal">
-    <div class="pillar-card" onclick="showPage('alm');window.scrollTo(0,0);" style="cursor:pointer;">
+    <div class="pillar-card" onclick="showPage('training');window.scrollTo(0,0);" style="cursor:pointer;">
       <div class="pillar-bar"></div>
       <div class="pillar-name">Concepts</div>
-      <div class="pillar-sub">The ALM reference layer.</div>
+      <div class="pillar-sub">The ALM training courses.</div>
       <div class="pillar-arrow"></div>
     </div>
     <div class="pillar-card" onclick="showPage('training');window.scrollTo(0,0);" style="cursor:pointer;">
@@ -1880,234 +2004,6 @@
 </div><!-- end page-home -->
 
 <!-- ALM KNOWLEDGE PAGE -->
-<div id="page-alm" style="display:none">
-  <div class="alm-page">
-
-    <!-- Hero -->
-    <div class="alm-page-hero">
-      <div>
-        <div class="alm-page-eyebrow">almcompass.com / ALM</div>
-        <div class="alm-page-title">Asset-Liability<br><span class="g">Management.</span></div>
-        <div class="alm-page-desc">A practitioner knowledge base covering the core concepts, frameworks, and metrics of ALM. Written for finance professionals — rigorous, accessible, and free.</div>
-      </div>
-      <div class="alm-toc">
-        <div class="alm-toc-header">On This Page</div>
-        <a class="alm-toc-item" href="#alm-what-is"><span class="toc-dot"></span>What is ALM?</a>
-        <a class="alm-toc-item" href="#alm-liquidity"><span class="toc-dot"></span>Liquidity</a>
-        <a class="alm-toc-item" href="#alm-lcr"><span class="toc-dot"></span>&nbsp;&nbsp;&nbsp;LCR</a>
-        <a class="alm-toc-item" href="#alm-nsfr"><span class="toc-dot"></span>&nbsp;&nbsp;&nbsp;NSFR</a>
-        <a class="alm-toc-item" href="#alm-internal-liq"><span class="toc-dot"></span>&nbsp;&nbsp;&nbsp;Internal Liquidity</a>
-      </div>
-    </div>
-
-    <!-- Body: sidenav + content -->
-    <div class="alm-body">
-
-      <!-- Sticky sidenav -->
-      <div class="alm-sidenav">
-        <div class="alm-sidenav-section">
-          <div class="alm-sidenav-label">Foundations</div>
-          <a class="alm-sidenav-link active" href="#alm-what-is">What is ALM?</a>
-        </div>
-        <div class="alm-sidenav-section">
-          <div class="alm-sidenav-label">Liquidity</div>
-          <a class="alm-sidenav-link" href="#alm-liquidity">Overview</a>
-          <a class="alm-sidenav-link" href="#alm-lcr">LCR</a>
-          <a class="alm-sidenav-link" href="#alm-nsfr">NSFR</a>
-          <a class="alm-sidenav-link" href="#alm-internal-liq">Internal Liquidity</a>
-        </div>
-        <div class="alm-sidenav-section">
-          <div class="alm-sidenav-label" style="color:var(--rule)">Coming Soon</div>
-          <a class="alm-sidenav-link" style="opacity:0.35;cursor:default">Interest Rate Risk</a>
-          <a class="alm-sidenav-link" style="opacity:0.35;cursor:default">Capital</a>
-          <a class="alm-sidenav-link" style="opacity:0.35;cursor:default">FTP</a>
-          <a class="alm-sidenav-link" style="opacity:0.35;cursor:default">ALCO Governance</a>
-        </div>
-      </div>
-
-      <!-- Main content -->
-      <div class="alm-content">
-
-        <!-- SECTION 1: What is ALM -->
-        <div class="alm-section" id="alm-what-is">
-          <div class="alm-section-tag">Foundations</div>
-          <div class="alm-section-title">What is <span class="g">Asset-Liability Management?</span></div>
-
-          <p class="alm-prose">
-            Asset-Liability Management, or ALM, is the discipline through which banks manage the structure,
-            risks, and profitability of their balance sheet. Every bank has an ALM function because banking
-            is fundamentally a leveraged balance sheet business: unlike most companies, which operate with
-            a relatively balanced mix of equity and liabilities, banks deliberately keep capital low and the
-            funding side of the balance sheet relies heavily on deposits, wholesale funding, and other
-            liabilities, which are used to generate income from loans, securities, and other assets.
-          </p>
-
-          <div class="alm-callout">
-            <div class="alm-callout-bar"></div>
-            <div class="alm-callout-text">
-              The importance of ALM became especially visible after the failures and stress events involving
-              <strong>Silicon Valley Bank</strong>, <strong>Credit Suisse</strong>, and other European banking
-              stress events in 2023, where weaknesses in liquidity, interest rate risk management, and balance
-              sheet positioning translated rapidly into banking crises.
-            </div>
-          </div>
-
-          <p class="alm-prose">
-            A weak ALM strategy will create significant costs for banks: drag in returns, inefficient use of
-            the balance sheet, poor pricing decisions, suboptimal capital allocation, and a balance sheet that
-            may comply with banking regulation but fails to maximize profitability.
-          </p>
-
-          <div class="alm-callout">
-            <div class="alm-callout-bar"></div>
-            <div class="alm-callout-text">
-              Each constraint &mdash; IRRBB, liquidity, capital &mdash; is managed in isolation, by different teams,
-              using different models, with different objectives. <strong>IRRBB manages EVS. The capital team manages
-              CET1. Treasury manages LCR. FP&amp;A manages NIM.</strong> Nobody is solving the joint problem &mdash;
-              but they are all looking at the same balance sheet.
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 2: Liquidity -->
-        <div class="alm-section" id="alm-liquidity">
-          <div class="alm-section-tag">Liquidity</div>
-          <div class="alm-section-title"><span class="g">Liquidity</span> — Regulatory Framework</div>
-
-          <p class="alm-prose">
-            Under Basel III, banks are required to maintain minimum liquidity standards designed to ensure
-            they can survive periods of market disruption and deposit or funding stress. These requirements
-            were introduced as part of the post-2008 Global Financial Crisis reform agenda, when regulators
-            recognized that capital strength alone was not enough if a bank could not meet its short-term
-            obligations.
-          </p>
-
-          <p class="alm-prose">
-            Basel III introduced two core liquidity ratios: the <strong>Liquidity Coverage Ratio (LCR)</strong>
-            and the <strong>Net Stable Funding Ratio (NSFR)</strong>. The LCR is a short-term liquidity metric
-            designed to ensure that banks hold enough high-quality liquid assets to survive a 30-day stress
-            scenario, while the NSFR is a longer-term structural funding metric designed to ensure that banks
-            fund their assets and activities with a sufficiently stable funding profile over a one-year horizon.
-          </p>
-
-          <!-- LCR sub-section -->
-          <div class="alm-subsection" id="alm-lcr">
-            <div class="alm-subsection-title">Liquidity Coverage Ratio — LCR</div>
-
-            <p class="alm-prose">
-              The Liquidity Coverage Ratio measures whether a bank has enough
-              <strong>High-Quality Liquid Assets (HQLA)</strong> to cover its expected net cash outflows over
-              a 30-day stress period. HQLA generally includes assets that can be converted into cash quickly
-              and reliably, even during periods of market stress — such as cash, central bank reserves, and
-              certain high-quality government or marketable securities.
-            </p>
-
-            <p class="alm-prose">
-              The purpose of the LCR is to promote short-term resilience by ensuring that a bank can withstand
-              a severe but plausible liquidity shock without immediately relying on external funding markets.
-            </p>
-
-            <div class="alm-formula">
-              <div class="alm-formula-label">Formula — LCR</div>
-              <div class="alm-formula-expr">
-                LCR &nbsp;=&nbsp;
-                <span class="frac">
-                  <span class="num">Stock of High-Quality Liquid Assets (HQLA)</span>
-                  <span class="bar"></span>
-                  <span class="den">Total Net Cash Outflows over the next 30 calendar days</span>
-                </span>
-                &nbsp;&ge;&nbsp; 100%
-              </div>
-              <div class="alm-formula-note">
-                In simple terms: a bank should hold at least enough liquid resources to cover its projected
-                net liquidity outflows during a 30-day stress event.
-              </div>
-            </div>
-          </div>
-
-          <!-- NSFR sub-section -->
-          <div class="alm-subsection" id="alm-nsfr">
-            <div class="alm-subsection-title">Net Stable Funding Ratio — NSFR</div>
-
-            <p class="alm-prose">
-              The Net Stable Funding Ratio measures whether a bank's assets and off-balance-sheet exposures
-              are funded with a sufficiently stable mix of capital and liabilities. Unlike the LCR, which
-              focuses on short-term liquidity survival, the NSFR focuses on the <strong>structural stability
-              of the balance sheet</strong> over a longer horizon — typically one year.
-            </p>
-
-            <p class="alm-prose">
-              The ratio compares a bank's <strong>Available Stable Funding (ASF)</strong> — which comes from
-              capital and liabilities considered reliable — against its <strong>Required Stable Funding
-              (RSF)</strong> — which depends on the liquidity characteristics and maturity profile of the
-              bank's assets and off-balance-sheet exposures.
-            </p>
-
-            <div class="alm-formula">
-              <div class="alm-formula-label">Formula — NSFR</div>
-              <div class="alm-formula-expr">
-                NSFR &nbsp;=&nbsp;
-                <span class="frac">
-                  <span class="num">Available Stable Funding (ASF)</span>
-                  <span class="bar"></span>
-                  <span class="den">Required Stable Funding (RSF)</span>
-                </span>
-                &nbsp;&ge;&nbsp; 100%
-              </div>
-              <div class="alm-formula-note">
-                In simple terms: stable funding profile — long-term or less-liquid assets should not be
-                excessively funded by short-term or unstable liabilities.
-              </div>
-            </div>
-          </div>
-
-          <!-- Internal Liquidity sub-section -->
-          <div class="alm-subsection" id="alm-internal-liq">
-            <div class="alm-subsection-title">Internal Liquidity Management</div>
-
-            <p class="alm-prose">
-              On top of regulatory requirements such as the LCR and NSFR, banks also maintain
-              <strong>internal liquidity stress testing frameworks</strong>. These internal models assess
-              whether the bank has enough liquidity resources under stress conditions that may be more
-              specific, severe, or institutionally relevant than standardised regulatory metrics.
-            </p>
-
-            <p class="alm-prose">
-              Typically, banks begin with today's balance sheet and apply internally defined stress assumptions
-              to estimate how deposits, wholesale funding, loan commitments, secured funding, derivatives, and
-              other balance sheet items may behave during a financial crisis. These assumptions often include
-              both <strong>idiosyncratic stress</strong> (a bank-specific confidence event) and
-              <strong>market-wide stress</strong> (a broader liquidity crisis).
-            </p>
-
-            <p class="alm-prose">
-              Through historical analysis, statistical models, regressions, behavioural assumptions, and expert
-              judgment, banks estimate appropriate runoff rates and inflow assumptions for different categories
-              of assets and liabilities. The objective is to understand what the balance sheet would look like
-              if a severe liquidity event occurred today.
-            </p>
-
-            <div class="alm-callout">
-              <div class="alm-callout-bar"></div>
-              <div class="alm-callout-text">
-                To be considered resilient, banks typically need to remain above predefined internal liquidity
-                limits, triggers, or survival horizons established by management and approved through the
-                bank's <strong>risk appetite framework</strong>.
-              </div>
-            </div>
-
-            <p class="alm-prose">
-              This process allows banks to determine whether they have a liquidity surplus or deficit under
-              stress — performed across both short-term horizons (typically 30 days) and longer-term horizons,
-              depending on the institution's liquidity risk appetite and internal governance framework.
-            </p>
-          </div>
-        </div>
-
-      </div><!-- end alm-content -->
-    </div><!-- end alm-body -->
-  </div><!-- end alm-page -->
-</div><!-- end page-alm -->
 
 <!-- ABOUT PAGE -->
 <div id="page-about" style="display:none">
@@ -2182,57 +2078,138 @@
     <div class="training-hero">
       <div class="training-hero-eyebrow">almcompass.com / Observatory</div>
       <div class="training-hero-title">The ALM <span class="g">Observatory.</span></div>
-      <div class="training-hero-desc">Independent treasury and balance sheet analysis of named banks &mdash; built entirely from publicly available disclosures: HKMA regulatory returns and global financial reports. Deposit and loan trends, capital and liquidity ratios, RWAs, and interest rate risk. Updated as new disclosures are published.</div>
+      <div class="training-hero-desc">A structured collection of public disclosures from banks in Hong Kong and internationally, read through a Treasury and ALM lens.</div>
       <div style="margin-top:24px;font-size:11px;font-weight:300;color:var(--text-muted);border:1px solid var(--rule);padding:12px 16px;display:inline-block;">
         <strong style="color:var(--text-secondary);font-weight:600;">Methodology:</strong> All figures sourced from public annual reports and HKMA disclosures. Analysis and commentary are independent and for educational purposes only &mdash; not investment advice.
       </div>
     </div>
 
-
-    <!-- At-a-glance comparison -->
-    <div style="padding: 40px 0 8px;">
-      <div style="margin: 0 48px 16px; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue-bright);">FY2025 At a Glance</div>
-      <div class="obs-compare">
-        <table>
-          <tr><th>Metric</th><th>HSBC HK</th><th>MS Bank Asia</th><th>JPM Private Bank HK</th></tr>
-          <tr><td>Total Assets</td><td>HK$11.7tn <span class="trend-up">+6.7%</span></td><td>$9.4bn <span class="trend-up">+10.5%</span></td><td>HK$171.6bn</td></tr>
-          <tr><td>Loan Growth</td><td><span class="trend-up">+4.3%</span></td><td><span class="trend-up">+27%</span></td><td>n/a — fee model</td></tr>
-          <tr><td>CET1 Ratio</td><td>19.1%</td><td>44%</td><td>n/a — branch</td></tr>
-          <tr><td>Liquidity</td><td>A/D 51.3%</td><td>LMR 61% · CFR 135%</td><td>n/a — branch</td></tr>
-          <tr><td>The Story</td><td>Capital surplus, deployment gap</td><td>Growth compressing liquidity</td><td>Fees +17%, AUM engine</td></tr>
-        </table>
+    <!-- Region toggle -->
+    <div class="obs-toggle-wrap">
+      <div class="obs-toggle">
+        <button class="active" id="obs-tab-hk" onclick="selectRegion('hk')">Hong Kong</button>
+        <button id="obs-tab-intl" onclick="selectRegion('intl')">International</button>
       </div>
-      <div class="obs-compare-note">All figures from public FY2025 disclosures (HKMA returns and annual reports). JPM HK operates as a branch within the global AWM division — entity-level capital and liquidity ratios are not directly comparable.</div>
     </div>
 
-    <!-- Bank selector -->
+
+    <!-- HONG KONG REGION -->
+    <div class="obs-region active" id="obs-region-hk">
+    <!-- HK COMPARISON TABLE -->
+    <div style="padding: 40px 0 0;">
+      <div class="obs-fx-bar">
+        <div class="obs-fx-label">FY2025 Balance Sheet Comparison &mdash; Hong Kong</div>
+        <div class="obs-fx-right">
+          <div style="font-size:11px;color:var(--text-muted);">Display in:</div>
+          <div class="obs-ccy-toggle">
+            <button class="active" id="ccy-usd" onclick="setCcy('usd')">USD</button>
+            <button id="ccy-hkd" onclick="setCcy('hkd')">HKD</button>
+          </div>
+        </div>
+      </div>
+      <div class="obs-compare2" style="min-width:900px;">
+        <table>
+          <thead>
+            <tr><th style="min-width:160px;">Metric</th><th>HSBC HK</th><th>BOCHK</th><th>Hang Seng</th><th>MS Bank Asia</th><th>JPM PB HK<sup>3</sup></th><th>BofA HK<sup>3</sup></th><th>GS Asia Bank<sup>4</sup></th></tr>
+          </thead>
+          <tbody>
+
+<tr style="background:var(--off-white)"><td style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Entity type</td><td style="font-size:11px;line-height:1.4;">LI Cat 1<br><span style="font-size:9px;color:var(--text-muted)">LCR/NSFR</span></td>
+<td style="font-size:11px;line-height:1.4;">LI Cat 1<br><span style="font-size:9px;color:var(--text-muted)">LCR/NSFR</span></td>
+<td style="font-size:11px;line-height:1.4;">LI Cat 1<br><span style="font-size:9px;color:var(--text-muted)">LCR/NSFR</span></td>
+<td style="font-size:11px;line-height:1.4;">LI Cat 1<br><span style="font-size:9px;color:var(--text-muted)">LMR/CFR</span></td>
+<td style="font-size:11px;line-height:1.4;">Branch<br><span style="font-size:9px;color:var(--text-muted)">LMR/CFR</span></td>
+<td style="font-size:11px;line-height:1.4;">Branch<br><span style="font-size:9px;color:var(--text-muted)">LMR/CFR</span></td>
+<td style="font-size:11px;line-height:1.4;">LI Cat 2<br><span style="font-size:9px;color:var(--text-muted)">LMR only</span></td></tr>
+<tr class="row-group-header"><td colspan="8">Balance Sheet</td></tr>
+<tr><td>Total Assets</td><td id="hk-total_assets-hsbc">$1,501.7bn</td><td id="hk-total_assets-bochk">$547.2bn</td><td id="hk-total_assets-hangseng">$233.8bn</td><td id="hk-total_assets-ms">$9.4bn</td><td id="hk-total_assets-jpm">$22.1bn</td><td id="hk-total_assets-bofa">$11.7bn</td><td id="hk-total_assets-gs">$0.2bn</td></tr>
+<tr><td>Customer Deposits</td><td id="hk-customer_deposits-hsbc">$912.2bn</td><td id="hk-customer_deposits-bochk">$378.7bn</td><td id="hk-customer_deposits-hangseng">$164.9bn</td><td id="hk-customer_deposits-ms">$6.9bn</td><td id="hk-customer_deposits-jpm">$15.2bn</td><td id="hk-customer_deposits-bofa">$6.8bn</td><td id="hk-customer_deposits-gs"><$0.0bn</td></tr>
+<tr><td>Intercompany Funding<sup>2</sup></td><td id="hk-intercompany_funding-hsbc">$49.8bn</td><td id="hk-intercompany_funding-bochk"><span class="pending">Pending</span></td><td id="hk-intercompany_funding-hangseng">$3.6bn</td><td id="hk-intercompany_funding-ms">$0.8bn</td><td id="hk-intercompany_funding-jpm">$0.4bn</td><td id="hk-intercompany_funding-bofa">$4.6bn</td><td id="hk-intercompany_funding-gs"><$0.0bn</td></tr>
+<tr><td>Loans &amp; Advances</td><td id="hk-loans_and_advances-hsbc">$468.1bn</td><td id="hk-loans_and_advances-bochk">$219.5bn</td><td id="hk-loans_and_advances-hangseng">$101.2bn</td><td id="hk-loans_and_advances-ms">$5.7bn</td><td id="hk-loans_and_advances-jpm">$2.6bn</td><td id="hk-loans_and_advances-bofa">$2.9bn</td><td id="hk-loans_and_advances-gs"><span class="na">n/a</span></td></tr>
+<tr><td>HQLA / Liquid Assets</td><td id="hk-hqla-hsbc">$277.6bn</td><td id="hk-hqla-bochk">$142.3bn</td><td id="hk-hqla-hangseng">$62.5bn</td><td id="hk-hqla-ms"><span class="na">n/d</span></td><td id="hk-hqla-jpm"><span class="na">n/a</span></td><td id="hk-hqla-bofa">$2.4bn</td><td id="hk-hqla-gs"><span class="na">n/a</span></td></tr>
+<tr><td>Intercompany Lending<sup>2</sup></td><td id="hk-intercompany_lending-hsbc">$24.7bn</td><td id="hk-intercompany_lending-bochk"><span class="pending">Pending</span></td><td id="hk-intercompany_lending-hangseng">$6.1bn</td><td id="hk-intercompany_lending-ms"><$0.0bn</td><td id="hk-intercompany_lending-jpm">$11.7bn</td><td id="hk-intercompany_lending-bofa">$4.5bn</td><td id="hk-intercompany_lending-gs">&lt;$0.1bn</td></tr>
+<tr class="row-group-header"><td colspan="8">Liquidity Ratios</td></tr>
+<tr><td>LCR</td><td>149.0%</td><td>184.4%</td><td>306.2%</td><td><span class="na">n/d</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td></tr>
+<tr><td>LMR (HKMA)</td><td><span class="na">n/d</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td>61%</td><td>61.1%</td><td>64.3%</td><td>160.0%</td></tr>
+<tr><td>NSFR</td><td>147.7%</td><td>142.3%</td><td>177.8%</td><td><span class="na">n/d</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td></tr>
+<tr><td>CFR (HKMA)</td><td><span class="na">n/d</span></td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td>135%</td><td>342.8%</td><td>428.9%</td><td><span class="na">n/a</span></td></tr>
+<tr class="row-group-header"><td colspan="8">Capital</td></tr>
+<tr><td>CET1 Capital</td><td id="hk-cet1_capital-hsbc">$72.4bn</td><td id="hk-cet1_capital-bochk">$38.0bn</td><td id="hk-cet1_capital-hangseng">$15.9bn</td><td id="hk-cet1_capital-ms">$2.2bn</td><td id="hk-cet1_capital-jpm"><span class="na">n/a</span></td><td id="hk-cet1_capital-bofa"><span class="na">n/a</span></td><td id="hk-cet1_capital-gs">$0.1bn</td></tr>
+<tr><td>Total RWA</td><td id="hk-total_rwa-hsbc">$380.2bn</td><td id="hk-total_rwa-bochk">$158.3bn</td><td id="hk-total_rwa-hangseng">$68.3bn</td><td id="hk-total_rwa-ms">$4.9bn</td><td id="hk-total_rwa-jpm"><span class="na">n/a</span></td><td id="hk-total_rwa-bofa"><span class="na">n/a</span></td><td id="hk-total_rwa-gs">$0.1bn</td></tr>
+<tr><td>CET1 Ratio</td><td>19.1%</td><td>24.0%</td><td>23.3%</td><td>44%</td><td><span class="na">n/a</span></td><td><span class="na">n/a</span></td><td>282.2%</td></tr>
+<tr class="row-group-header"><td colspan="8">Interest Rate Risk</td></tr>
+<tr><td>IRE / EVE (Δ200bp)<sup>5</sup></td><td id="hk-eve_200bp-hsbc"><span class="na">n/d</span></td><td id="hk-eve_200bp-bochk"><span class="na">n/a</span></td><td id="hk-eve_200bp-hangseng"><span class="na">n/d</span></td><td id="hk-eve_200bp-ms">&lt;$0.1bn loss</td><td id="hk-eve_200bp-jpm"><span class="na">n/a</span></td><td id="hk-eve_200bp-bofa"><span class="na">n/a</span></td><td id="hk-eve_200bp-gs"><$0.0bn</td></tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="obs-footnote">
+          <sup>1</sup> Balance sheet at 31 Dec 2025 unless stated.&nbsp;&nbsp;
+          <sup>2</sup> Intercompany items reflect amounts due to/from group entities; eliminated on consolidation for Category 1 locally incorporated banks — figures shown may reflect solo or unconsolidated basis where disclosed.&nbsp;&nbsp;
+          <sup>3</sup> Branch entity — standalone capital ratios not applicable; LMR/CFR reported rather than LCR/NSFR.&nbsp;&nbsp;
+          <sup>4</sup> Goldman Sachs Asia Bank Ltd: Category 2 restricted licence bank; LMR only; CET1 ratio 282% reflects very low RWA relative to capital; no customer loan book.&nbsp;&nbsp;
+          <sup>5</sup> EVE/IRE under +200bp parallel shock; n/d = not disclosed in public document.&nbsp;&nbsp;
+          <span id="obs-fx-note">FX: HKD converted at USD/HKD 7.78 (HK peg, FY2025). Branch USD figures (MS Bank Asia) shown as reported; HKD derived.</span>
+          All figures from public FY2025 disclosures. LI = locally incorporated. Cat 1/2 = HKMA category. Independent analysis — not investment advice.
+        </div>
+    </div>
+
+      <!-- Bank selector -->
     <div class="course-grid" style="grid-template-columns: repeat(4, 1fr);">
       <div class="course-card active" id="bank-card-hsbc" onclick="selectBank('hsbc')">
         <div class="course-num">FY2025</div>
-        <div class="course-icon-bar"></div>
+        <div class="bank-mono">HSBC</div>
         <div class="course-name">HSBC<br>Hong Kong</div>
         <div class="course-meta">Capital surplus, output floor, and the A/D deployment gap.</div>
         <div class="course-slides-count">6 Slides</div>
       </div>
+      <div class="course-card" id="bank-card-bochk" onclick="selectBank('bochk')">
+        <div class="course-num">FY2025</div>
+        <div class="bank-mono">BOC</div>
+        <div class="course-name">Bank of China<br>(Hong Kong)</div>
+        <div class="course-meta">CET1 24%, LCR 184%, NSFR 142%. Strong capital and liquidity buffers.</div>
+        <div class="course-slides-count">In development</div>
+      </div>
+      <div class="course-card" id="bank-card-hangseng" onclick="selectBank('hangseng')">
+        <div class="course-num">FY2025</div>
+        <div class="bank-mono">HSB</div>
+        <div class="course-name">Hang Seng<br>Bank</div>
+        <div class="course-meta">CET1 23.3%, LCR 306%. RWA fell 22% on Basel III reforms.</div>
+        <div class="course-slides-count">In development</div>
+      </div>
       <div class="course-card" id="bank-card-ms" onclick="selectBank('ms')">
         <div class="course-num">FY2025</div>
-        <div class="course-icon-bar"></div>
+        <div class="bank-mono">MS</div>
         <div class="course-name">Morgan Stanley<br>Bank Asia</div>
         <div class="course-meta">Rapid loan growth and liquidity ratio compression.</div>
         <div class="course-slides-count">6 Slides</div>
       </div>
       <div class="course-card" id="bank-card-jpm" onclick="selectBank('jpm')">
         <div class="course-num">FY2025</div>
-        <div class="course-icon-bar"></div>
+        <div class="bank-mono">JPM</div>
         <div class="course-name">J.P. Morgan<br>Private Bank</div>
         <div class="course-meta">The AUM-fee model as the P&amp;L growth engine.</div>
         <div class="course-slides-count">5 Slides</div>
       </div>
-      <div class="course-card" id="bank-card-soon" onclick="return false;" style="cursor:default;opacity:0.55;">
+      <div class="course-card" id="bank-card-bofa" onclick="selectBank('bofa')">
+        <div class="course-num">FY2025</div>
+        <div class="bank-mono">BAC</div>
+        <div class="course-name">Bank of America<br>HK Branch</div>
+        <div class="course-meta">LMR 64%, CFR 429%. Branch with heavy intercompany flows.</div>
+        <div class="course-slides-count">In development</div>
+      </div>
+      <div class="course-card" id="bank-card-gs" onclick="selectBank('gs')">
+        <div class="course-num">FY2025</div>
+        <div class="bank-mono">GS</div>
+        <div class="course-name">Goldman Sachs<br>Asia Bank</div>
+        <div class="course-meta">Category 2 restricted licence bank. LMR 160%, CET1 282%.</div>
+        <div class="course-slides-count">In development</div>
+      </div>
+      <div class="course-card" id="bank-card-hksoon" onclick="return false;" style="cursor:default;opacity:0.45;">
         <div class="course-num">Coming Soon</div>
-        <div class="course-icon-bar" style="background:var(--rule);"></div>
-        <div class="course-name">More Banks</div>
-        <div class="course-meta">Bank of America, and selected Chinese banks to follow.</div>
+        <div class="bank-mono" style="opacity:0.5;">+</div>
+        <div class="course-name">More HK Banks</div>
+        <div class="course-meta">Standard Chartered HK and others to follow.</div>
         <div class="course-slides-count" style="color:var(--text-muted);">In Preparation</div>
       </div>
     </div>
@@ -2480,7 +2457,139 @@
           </div>
         </div>
 
-        <!-- Controls -->
+        
+        <!-- BOCHK slides -->
+        <div class="bank-slides" id="bankslides-bochk" style="display:none">
+          <div class="slide-content active">
+            <div class="slide-tag">Bank of China (HK) &middot; FY2025 &middot; Slide 1 of 4</div>
+            <div class="slide-title">BOCHK &mdash; <span class="g">FY2025 Snapshot</span></div>
+            <div class="slide-body">
+              <div class="slide-twocol">
+                <div>
+                  <div class="slide-col-label">Balance Sheet</div>
+                  <ul class="slide-list">
+                    <li><strong>Total Assets:</strong> $547.2bn (HK$4,257bn, +6.1%)</li>
+                    <li><strong>Customer Deposits:</strong> $378.7bn (+8.2%)</li>
+                    <li><strong>Loans &amp; Advances:</strong> $219.5bn (+2.3%)</li>
+                    <li><strong>HQLA:</strong> $142.3bn (+15.2%)</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="slide-col-label">Ratios</div>
+                  <ul class="slide-list">
+                    <li><strong>CET1 Ratio:</strong> 24.01% (was 20.02%)</li>
+                    <li><strong>LCR (Q4 avg):</strong> 184.4%</li>
+                    <li><strong>NSFR (Q4):</strong> 142.3%</li>
+                    <li><strong>Total RWA:</strong> $158.3bn</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-content"><div class="slide-tag">BOCHK &middot; Slide 2 of 4</div><div class="slide-title">Capital &amp; <span class="g">RWA Profile</span></div><div class="slide-body"><p>CET1 jumped to 24.01% from 20.02% — the largest single-year increase in the peer group, driven primarily by the Basel III final reform package (effective 1 Jan 2025) which substantially reduced RWAs. Tier 1 = Total capital (no AT1/T2 instruments).</p><div class="slide-callout">RWA declined materially under the new framework — a significant capital management tailwind for BOCHK given its large credit portfolio.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">BOCHK &middot; Slide 3 of 4</div><div class="slide-title">Liquidity &amp; <span class="g">Funding</span></div><div class="slide-body"><p>LCR averaged 184.4% in Q4 2025, well above the 100% minimum. NSFR at 142.3%. HQLA grew 15.2% to HK$1,107bn — the liquidity cushion is expanding as deposits grow faster than loans (A/D ratio falling).</p><div class="slide-callout">Deposit growth +8.2% vs loan growth +2.3% — the same deployment gap dynamic seen at HSBC, just at a different scale.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">BOCHK &middot; Slide 4 of 4</div><div class="slide-title">Key <span class="g">Takeaways</span></div><div class="slide-body"><ul class="slide-list"><li>CET1 24% — materially above peers, boosted by Basel III RWA reduction</li><li>Deposit growth outpacing loans — widening sub-deployment gap</li><li>HQLA growing — liquidity buffer expanding</li><li>No AT1 or Tier 2 instruments — pure equity capital base</li></ul><div style="font-size:11px;color:var(--text-muted);margin-top:24px;">Source: BOCHK Annual Report 2025. Independent analysis — not investment advice.</div></div></div>
+        </div>
+
+        <!-- Hang Seng slides -->
+        <div class="bank-slides" id="bankslides-hangseng" style="display:none">
+          <div class="slide-content active">
+            <div class="slide-tag">Hang Seng Bank &middot; FY2025 &middot; Slide 1 of 4</div>
+            <div class="slide-title">Hang Seng &mdash; <span class="g">FY2025 Snapshot</span></div>
+            <div class="slide-body">
+              <div class="slide-twocol">
+                <div>
+                  <div class="slide-col-label">Balance Sheet</div>
+                  <ul class="slide-list">
+                    <li><strong>Total Assets:</strong> $233.8bn (HK$1,819bn, +1.3%)</li>
+                    <li><strong>Customer Deposits:</strong> $165.0bn (+1%)</li>
+                    <li><strong>Loans &amp; Advances:</strong> $101.2bn (net)</li>
+                    <li><strong>HQLA:</strong> $62.5bn (avg Q4)</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="slide-col-label">Ratios</div>
+                  <ul class="slide-list">
+                    <li><strong>CET1 Ratio:</strong> 23.3% (was 17.7%)</li>
+                    <li><strong>LCR (Q4 avg):</strong> 306.2%</li>
+                    <li><strong>NSFR (Q4):</strong> 177.8%</li>
+                    <li><strong>Total RWA:</strong> $68.3bn (fell 21.8%)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-content"><div class="slide-tag">Hang Seng &middot; Slide 2 of 4</div><div class="slide-title">The <span class="g">Basel III Dividend</span></div><div class="slide-body"><p>Hang Seng's CET1 ratio jumped from 17.7% to 23.3% in a single year — a 5.6pp increase — as RWAs fell 21.8% under the Basel III final reform package. This is the most dramatic peer-group RWA compression in our sample.</p><div class="slide-callout">RWA reduction of ~$19bn on a capital base of $15.9bn is a transformational capital event. The question is how management deploys this newly released capacity.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">Hang Seng &middot; Slide 3 of 4</div><div class="slide-title">Liquidity — <span class="g">Very Conservative</span></div><div class="slide-body"><p>LCR of 306.2% is the highest in the peer group — roughly twice the HSBC level and three times the minimum. HQLA of $62.5bn against a much smaller balance sheet signals an exceptionally defensive liquidity posture.</p><div class="slide-callout">An LCR above 300% typically implies significant sub-deployment of liquid assets into lower-yielding HQLA rather than higher-yielding loans — a drag on NIM.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">Hang Seng &middot; Slide 4 of 4</div><div class="slide-title">Key <span class="g">Takeaways</span></div><div class="slide-body"><ul class="slide-list"><li>CET1 23.3% — largest single-year jump in the peer group</li><li>RWA fell 21.8% — Basel III reform package the driver</li><li>LCR 306% — highest in the peer group, very conservative liquidity posture</li><li>Loan growth modest — deployment gap widening</li></ul><div style="font-size:11px;color:var(--text-muted);margin-top:24px;">Source: Hang Seng Bank Annual Report 2025. Independent analysis — not investment advice.</div></div></div>
+        </div>
+
+        <!-- BofA HK slides -->
+        <div class="bank-slides" id="bankslides-bofa" style="display:none">
+          <div class="slide-content active">
+            <div class="slide-tag">Bank of America HK Branch &middot; FY2025 &middot; Slide 1 of 4</div>
+            <div class="slide-title">BofA HK &mdash; <span class="g">FY2025 Snapshot</span></div>
+            <div class="slide-body">
+              <div class="slide-twocol">
+                <div>
+                  <div class="slide-col-label">Balance Sheet</div>
+                  <ul class="slide-list">
+                    <li><strong>Total Assets:</strong> $11.7bn (HK$91.0bn)</li>
+                    <li><strong>Customer Deposits:</strong> $6.8bn</li>
+                    <li><strong>Interco Funding:</strong> $4.6bn (39% of assets)</li>
+                    <li><strong>Loans:</strong> $2.9bn</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="slide-col-label">Liquidity (Branch)</div>
+                  <ul class="slide-list">
+                    <li><strong>LMR:</strong> 64.3% (was 58.7%)</li>
+                    <li><strong>CFR:</strong> 428.9% (was 347.7%)</li>
+                    <li><strong>CET1/RWA:</strong> n/a — branch</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-content"><div class="slide-tag">BofA HK &middot; Slide 2 of 4</div><div class="slide-title">A <span class="g">Heavily Intercompany</span> Balance Sheet</div><div class="slide-body"><p>Intercompany funding ($4.6bn) represents 39% of total assets — an exceptionally high proportion compared to locally incorporated peers. Intercompany lending ($4.5bn) is almost equal, suggesting the branch acts partly as a conduit between the parent and Hong Kong clients.</p><div class="slide-callout">For a branch, this intercompany symmetry is normal — the branch treasury is effectively an extension of the parent's global balance sheet.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">BofA HK &middot; Slide 3 of 4</div><div class="slide-title">CFR <span class="g">Improving Sharply</span></div><div class="slide-body"><p>CFR improved from 347.7% to 428.9% — a significant increase in core funding coverage. LMR moved from 58.7% to 64.3%, remaining comfortable above the 25% minimum. Both ratios confirm a well-funded branch.</p></div></div>
+          <div class="slide-content"><div class="slide-tag">BofA HK &middot; Slide 4 of 4</div><div class="slide-title">Key <span class="g">Takeaways</span></div><div class="slide-body"><ul class="slide-list"><li>Branch entity — no standalone capital ratios</li><li>Heavily intercompany — 39% of assets funded by parent group</li><li>LMR 64%, CFR 429% — well-funded, ratios improving</li><li>Loan book modest ($2.9bn) relative to total assets</li></ul><div style="font-size:11px;color:var(--text-muted);margin-top:24px;">Source: BofA HK Branch Pillar 3 Disclosure FY2025. Independent analysis — not investment advice.</div></div></div>
+        </div>
+
+        <!-- GS Asia Bank slides -->
+        <div class="bank-slides" id="bankslides-gs" style="display:none">
+          <div class="slide-content active">
+            <div class="slide-tag">Goldman Sachs Asia Bank &middot; FY2025 &middot; Slide 1 of 4</div>
+            <div class="slide-title">GS Asia Bank &mdash; <span class="g">FY2025 Snapshot</span></div>
+            <div class="slide-body">
+              <div class="slide-twocol">
+                <div>
+                  <div class="slide-col-label">Balance Sheet</div>
+                  <ul class="slide-list">
+                    <li><strong>Total Assets:</strong> $184m (HK$1.4bn)</li>
+                    <li><strong>Deposits:</strong> $1m (one affiliated client)</li>
+                    <li><strong>No customer loan book</strong></li>
+                    <li><strong>CET1 Capital:</strong> $131.8m</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="slide-col-label">Ratios</div>
+                  <ul class="slide-list">
+                    <li><strong>CET1 Ratio:</strong> 282.2%</li>
+                    <li><strong>Total RWA:</strong> $46.7m</li>
+                    <li><strong>LMR:</strong> 160%</li>
+                    <li><strong>EVE +200bp:</strong> +$63k</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-content"><div class="slide-tag">GS Asia Bank &middot; Slide 2 of 4</div><div class="slide-title">A <span class="g">Different Business Model</span></div><div class="slide-body"><p>Goldman Sachs Asia Bank is a Category 2 restricted licence bank — fundamentally different from the other institutions in this Observatory. It has no conventional customer loan book and holds only a single affiliated deposit. Its balance sheet is primarily derivatives and treasury positions with affiliated GS entities.</p><div class="slide-callout">Comparing a CET1 ratio of 282% directly against HSBC's 19% or BOCHK's 24% is misleading — the metric means something entirely different when RWA is $47m versus $2,958bn.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">GS Asia Bank &middot; Slide 3 of 4</div><div class="slide-title">IRRBB — <span class="g">EVE Positive</span></div><div class="slide-body"><p>EVE sensitivity to a +200bp parallel shock is +$63k — a negligible but positive number. This is unusual: most banks show a negative ΔEVE under a rate-up shock (fixed-rate assets fall in value faster than liabilities). GS Asia Bank's near-zero result reflects minimal duration mismatch on a small, derivatives-focused balance sheet.</p></div></div>
+          <div class="slide-content"><div class="slide-tag">GS Asia Bank &middot; Slide 4 of 4</div><div class="slide-title">Key <span class="g">Takeaways</span></div><div class="slide-body"><ul class="slide-list"><li>Category 2 restricted licence bank — no conventional banking book</li><li>CET1 282% — extreme ratio due to minimal RWA, not a comparable capital figure</li><li>LMR 160% — well above minimum, reflects treasury/derivatives focus</li><li>EVE +200bp: +$63k — essentially zero, confirming near-zero duration risk</li></ul><div style="font-size:11px;color:var(--text-muted);margin-top:24px;">Source: GS Asia Bank Unaudited Disclosure Statement FY2025. Independent analysis — not investment advice.</div></div></div>
+        </div>
+
+<!-- Controls -->
         <div class="slide-controls">
           <button class="slide-nav-btn" id="obs-prev" onclick="changeObsSlide(-1)" disabled>&larr; Prev</button>
           <div style="display:flex;align-items:center;gap:20px;">
@@ -2492,6 +2601,174 @@
 
       </div>
     </div>
+    </div><!-- end obs-region-hk -->
+
+    <!-- INTERNATIONAL REGION -->
+    <div class="obs-region" id="obs-region-intl">
+
+
+            <!-- INTL COMPARISON TABLE -->
+      <div style="padding: 40px 0 0;">
+        <div class="obs-fx-bar">
+          <div class="obs-fx-label">FY2025 Balance Sheet Comparison &mdash; International (USD)</div>
+        </div>
+        <div class="obs-compare2">
+          <table>
+            <thead>
+              <tr><th>Metric</th><th>JPMorgan Chase</th><th>Bank of America</th></tr>
+            </thead>
+            <tbody>
+              <tr class="row-group-header"><td colspan="3">Balance Sheet</td></tr>
+              <tr>
+                <td>Total Assets</td>
+                <td>~$4.0tn</td>
+                <td>~$3.3tn</td>
+              </tr>
+              <tr>
+                <td>Customer Deposits</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>Intercompany Funding</td>
+                <td><span class="na">n/a — group</span></td>
+                <td><span class="na">n/a — group</span></td>
+              </tr>
+              <tr>
+                <td>Loans & Advances</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>HQLA / Liquid Assets</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>Intercompany Lending</td>
+                <td><span class="na">n/a — group</span></td>
+                <td><span class="na">n/a — group</span></td>
+              </tr>
+              <tr class="row-group-header"><td colspan="3">Liquidity Ratios</td></tr>
+              <tr>
+                <td>LCR</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>LMR (HKMA)</td>
+                <td><span class="na">n/a — US</span></td>
+                <td><span class="na">n/a — US</span></td>
+              </tr>
+              <tr>
+                <td>NSFR</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>CFR (HKMA)</td>
+                <td><span class="na">n/a — US</span></td>
+                <td><span class="na">n/a — US</span></td>
+              </tr>
+              <tr class="row-group-header"><td colspan="3">Capital</td></tr>
+              <tr>
+                <td>CET1 Capital</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>Total RWA</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+              <tr>
+                <td>CET1 Ratio</td>
+                <td>~15%</td>
+                <td>~11.9%</td>
+              </tr>
+              <tr class="row-group-header"><td colspan="3">Interest Rate Risk</td></tr>
+              <tr>
+                <td>IRE / EVE (Δ200bp)</td>
+                <td><span class="pending">Pending report</span></td>
+                <td><span class="pending">Pending report</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="obs-footnote">
+          Group-level figures from public FY2025 reporting (10-K / annual report). Indicative, finalised as full analyses are published.
+          US banks report under the US Basel framework — LMR and CFR (HKMA-specific ratios) are not applicable. All figures in USD. Independent analysis — not investment advice.
+        </div>
+      </div>
+
+      <!-- Bank selector -->
+      <div class="course-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="course-card active" id="bank-card-jpmc" onclick="selectBankIntl('jpmc')">
+          <div class="course-num">FY2025</div>
+          <div class="bank-mono">JPM</div>
+          <div class="course-name">JPMorgan<br>Chase &amp; Co.</div>
+          <div class="course-meta">Scale, the AWM franchise, and a fortress balance sheet.</div>
+          <div class="course-slides-count">In development</div>
+        </div>
+        <div class="course-card" id="bank-card-bofa" onclick="selectBankIntl('bofa')">
+          <div class="course-num">FY2025</div>
+          <div class="bank-mono">BAC</div>
+          <div class="course-name">Bank of<br>America</div>
+          <div class="course-meta">Deposit franchise strength and balance sheet rate sensitivity.</div>
+          <div class="course-slides-count">In development</div>
+        </div>
+        <div class="course-card" id="bank-card-intlsoon" onclick="return false;" style="cursor:default;opacity:0.55;">
+          <div class="course-num">Coming Soon</div>
+          <div class="bank-mono" style="opacity:0.5;">+</div>
+          <div class="course-name">More Global Banks</div>
+          <div class="course-meta">Citi, Morgan Stanley (group), and an ICBC / CCB deep-dive to follow.</div>
+          <div class="course-slides-count" style="color:var(--text-muted);">In Preparation</div>
+        </div>
+      </div>
+
+      <!-- Slideshow -->
+      <div class="slideshow">
+        <div class="slide-frame">
+          <div class="slide-progress"><div class="slide-progress-fill" id="intl-progress-fill" style="width:25%"></div></div>
+
+          <!-- JPMorgan Chase slides -->
+          <div class="bank-slides" id="intlslides-jpmc">
+            <div class="slide-content active">
+              <div class="slide-tag">JPMorgan Chase &middot; FY2025 &middot; Slide 1 of 4</div>
+              <div class="slide-title">JPMorgan Chase &mdash; <span class="g">Overview</span></div>
+              <div class="slide-body"><p>The largest U.S. bank by assets, spanning consumer banking, corporate &amp; investment banking, commercial banking, and asset &amp; wealth management.</p><div class="slide-callout">Full analysis in development &mdash; deposit and loan trends, CET1 trajectory, and the output-floor impact on RWAs.</div></div>
+            </div>
+            <div class="slide-content"><div class="slide-tag">JPMorgan Chase &middot; Slide 2 of 4</div><div class="slide-title">Capital &amp; RWAs</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+            <div class="slide-content"><div class="slide-tag">JPMorgan Chase &middot; Slide 3 of 4</div><div class="slide-title">Liquidity &amp; Funding</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+            <div class="slide-content"><div class="slide-tag">JPMorgan Chase &middot; Slide 4 of 4</div><div class="slide-title">Key Takeaways</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+          </div>
+
+          <!-- Bank of America slides -->
+          <div class="bank-slides" id="intlslides-bofa" style="display:none">
+            <div class="slide-content active">
+              <div class="slide-tag">Bank of America &middot; FY2025 &middot; Slide 1 of 4</div>
+              <div class="slide-title">Bank of America &mdash; <span class="g">Overview</span></div>
+              <div class="slide-body"><p>One of the largest U.S. banks, with a vast retail deposit franchise that drives its net interest income and rate sensitivity profile.</p><div class="slide-callout">Full analysis in development &mdash; with a focus on deposit behaviour, the securities book, and AOCI / rate sensitivity.</div></div>
+            </div>
+            <div class="slide-content"><div class="slide-tag">Bank of America &middot; Slide 2 of 4</div><div class="slide-title">Deposit Franchise &amp; NII</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+            <div class="slide-content"><div class="slide-tag">Bank of America &middot; Slide 3 of 4</div><div class="slide-title">Securities Book &amp; AOCI</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+            <div class="slide-content"><div class="slide-tag">Bank of America &middot; Slide 4 of 4</div><div class="slide-title">Key Takeaways</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+          </div>
+
+          <!-- Controls -->
+          <div class="slide-controls">
+            <button class="slide-nav-btn" id="intl-prev" onclick="changeIntlSlide(-1)" disabled>&larr; Prev</button>
+            <div style="display:flex;align-items:center;gap:20px;">
+              <div class="slide-dots" id="intl-dots"></div>
+              <div class="slide-counter" id="intl-counter">1 / 4</div>
+            </div>
+            <button class="slide-nav-btn primary" id="intl-next" onclick="changeIntlSlide(1)">Next &rarr;</button>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- end obs-region-intl -->
+
   </div>
 </div>
 
@@ -2500,72 +2777,307 @@
   <div class="training-page">
     <div class="training-hero">
       <div class="training-hero-eyebrow">almcompass.com / Training</div>
-      <div class="training-hero-title">ALM <span class="g">Micro-Trainings.</span></div>
-      <div class="training-hero-desc">Short, focused walkthroughs of the three core ALM risk pillars. Each covers regulatory requirements, where to find the rules, a worked metric calculation, and the practical levers to improve it.</div>
+      <div class="training-hero-title">ALM <span class="g">Training.</span></div>
+      <div class="training-hero-desc">A practitioner knowledge base, taught course by course &mdash; from how a bank&rsquo;s businesses actually make money to the core ALM risk pillars. Each course covers what matters, where to find the rules, worked calculations, and the practical levers.</div>
     </div>
+
+    <!-- ALM overview -->
+    <div class="training-overview">
+      <div class="alm-section-tag">Foundations</div>
+      <div class="training-overview-title">What is <span class="g">Asset-Liability Management?</span></div>
+      <p class="alm-prose">
+        Asset-Liability Management, or ALM, is the discipline through which banks manage the structure,
+        risks, and profitability of their balance sheet. Every bank has an ALM function because banking
+        is fundamentally a leveraged balance sheet business: unlike most companies, which operate with
+        a relatively balanced mix of equity and liabilities, banks deliberately keep capital low and the
+        funding side of the balance sheet relies heavily on deposits, wholesale funding, and other
+        liabilities, which are used to generate income from loans, securities, and other assets.
+      </p>
+      <p class="alm-prose">
+        A weak ALM strategy creates real costs: drag on returns, inefficient use of the balance sheet,
+        poor pricing decisions, suboptimal capital allocation, and a balance sheet that may comply with
+        regulation but fails to maximise profitability.
+      </p>
+      <div class="alm-callout">
+        <div class="alm-callout-bar"></div>
+        <div class="alm-callout-text">
+          Each constraint &mdash; IRRBB, liquidity, capital &mdash; is managed in isolation, by different teams,
+          using different models, with different objectives. <strong>IRRBB manages EVS. The capital team manages
+          CET1. Treasury manages LCR. FP&amp;A manages NIM.</strong> Nobody is solving the joint problem &mdash;
+          but they are all looking at the same balance sheet.
+        </div>
+      </div>
+      <p class="alm-prose">
+        The courses below build from the ground up: start with how a bank&rsquo;s businesses generate income,
+        then work through the three regulatory risk pillars &mdash; liquidity, capital, and interest-rate
+        risk &mdash; and how Treasury prices them through funds-transfer pricing.
+      </p>
+    </div>
+
+    <div class="training-courses-label">Choose a course</div>
 
     <!-- Course selector -->
     <div class="course-grid">
-      <div class="course-card active" id="course-card-liquidity" onclick="selectCourse('liquidity')">
+      <div class="course-card active" id="course-card-business" onclick="selectCourse('business')">
         <div class="course-num">01</div>
         <div class="course-icon-bar"></div>
+        <div class="course-name">Understand the Business</div>
+        <div class="course-meta">Retail, corporate, private, investment banking, markets, and how each makes money.</div>
+        <div class="course-slides-count">14 Slides &middot; ~15 min</div>
+      </div>
+      <div class="course-card" id="course-card-liquidity" onclick="selectCourse('liquidity')">
+        <div class="course-num">02</div>
+        <div class="course-icon-bar"></div>
         <div class="course-name">Liquidity</div>
-        <div class="course-meta">LCR, NSFR, internal stress testing, and the levers that move them.</div>
-        <div class="course-slides-count">8 Slides &middot; ~10 min</div>
+        <div class="course-meta">HQLA, haircuts, runoffs, stress testing, day-to-day tools, and triggers.</div>
+        <div class="course-slides-count">22 Slides &middot; ~25 min</div>
       </div>
       <div class="course-card" id="course-card-capital" onclick="selectCourse('capital')">
-        <div class="course-num">02</div>
+        <div class="course-num">03</div>
         <div class="course-icon-bar"></div>
         <div class="course-name">Capital</div>
         <div class="course-meta">CET1, RWA mechanics, the output floor, and capital optimisation levers.</div>
         <div class="course-slides-count">8 Slides &middot; ~10 min</div>
       </div>
       <div class="course-card" id="course-card-irrbb" onclick="selectCourse('irrbb')">
-        <div class="course-num">03</div>
+        <div class="course-num">04</div>
         <div class="course-icon-bar"></div>
         <div class="course-name">IRRBB</div>
         <div class="course-meta">EVE, NII, the EVS outlier test, and hedging levers for rate risk.</div>
         <div class="course-slides-count">8 Slides &middot; ~10 min</div>
+      </div>
+      <div class="course-card" id="course-card-ftp" onclick="selectCourse('ftp')">
+        <div class="course-num">05</div>
+        <div class="course-icon-bar"></div>
+        <div class="course-name">FTP</div>
+        <div class="course-meta">Funds transfer pricing &mdash; how Treasury charges each business for liquidity and rate risk.</div>
+        <div class="course-slides-count">Coming soon</div>
       </div>
     </div>
 
     <!-- Slideshow -->
     <div class="slideshow">
       <div class="slide-frame">
-        <div class="slide-progress"><div class="slide-progress-fill" id="slide-progress-fill" style="width:12.5%"></div></div>
+        <div class="slide-progress"><div class="slide-progress-fill" id="slide-progress-fill" style="width:7.1%"></div></div>
 
-        <!-- ===== LIQUIDITY SLIDES ===== -->
-        <div class="course-slides" id="slides-liquidity">
+        <!-- ===== UNDERSTAND THE BUSINESS SLIDES ===== -->
+        <div class="course-slides" id="slides-business">
 
           <div class="slide-content active">
-            <div class="slide-tag">Liquidity &middot; Slide 1 of 8</div>
+            <div class="slide-tag">Bank Business &middot; Slide 1 of 14</div>
+            <div class="slide-title">Understand a <span class="g">Bank&rsquo;s Business</span></div>
+            <div class="slide-body">
+              <p>Before managing a balance sheet, it helps to know what is actually on it &mdash; and a large bank is not one business but a federation of them, each with its own clients, economics, and balance-sheet footprint.</p>
+              <p>Broadly, the revenue of a bank comes from three engines:</p>
+              <ul class="slide-list">
+                <li><strong>Net interest income</strong> &mdash; the spread between what the bank earns on assets (loans, securities) and pays on liabilities (deposits, funding)</li>
+                <li><strong>Fee &amp; commission income</strong> &mdash; charges for advice, transactions, custody, and management, which use little or no balance sheet</li>
+                <li><strong>Trading income</strong> &mdash; gains from market-making and risk-taking in securities, FX, and derivatives</li>
+              </ul>
+              <div class="slide-callout">For ALM, the key distinction is balance-sheet-intensive businesses (lending, deposits) versus fee-driven ones (advisory, custody). The first consume liquidity and capital; the second generate return on very little of either. This shapes everything Treasury does.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 2 of 14</div>
+            <div class="slide-title">Retail <span class="g">Banking</span></div>
+            <div class="slide-body">
+              <p>Retail banking &mdash; also called personal or consumer banking &mdash; serves individuals and households. It is the business most people picture: branches, current and savings accounts, mortgages, personal loans, and credit cards.</p>
+              <p><strong>How it makes money:</strong> primarily net interest income &mdash; the spread between interest earned on mortgages and cards and interest paid on deposits &mdash; plus account and card fees. It is typically the largest single earnings contributor in a universal bank.</p>
+              <div class="slide-callout">From a Treasury lens, retail is gold: a granular, sticky deposit base is the cheapest and most stable funding a bank can have. Those small insured balances carry low runoff factors and high stable-funding value &mdash; the bedrock of the liquidity buffer.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 3 of 14</div>
+            <div class="slide-title">Commercial <span class="g">Banking</span></div>
+            <div class="slide-body">
+              <p>Commercial banking does what retail does, but for businesses &mdash; typically small and mid-sized companies. The product set widens to business loans, lines of credit, equipment and asset-based finance, cash management, and merchant services.</p>
+              <p><strong>How it makes money:</strong> net interest income on business lending, plus fees for cash management, payments, and advisory. Deposit balances from operating accounts are a valuable, relatively stable funding source.</p>
+              <div class="slide-callout">Operating (operational) deposits tied to a company&rsquo;s day-to-day cash management are stickier than rate-shopping balances, and receive favourable liquidity treatment &mdash; one reason banks compete hard for the primary banking relationship, not just the loan.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 4 of 14</div>
+            <div class="slide-title">Corporate <span class="g">Banking</span></div>
+            <div class="slide-body">
+              <p>Corporate banking serves the largest clients &mdash; middle-market through multinational corporations, institutions, and governments. It is commercial banking scaled up and made more sophisticated: large syndicated loans, structured and cross-border finance, and integrated treasury services.</p>
+              <p><strong>How it makes money:</strong> interest on large credit facilities, plus substantial fee income from arranging syndicated loans, payments, FX, and the cross-sell into investment-banking products.</p>
+              <div class="slide-callout">Corporate exposures are large and concentrated, so they consume meaningful capital (RWA) and, when funded by wholesale deposits, carry high liquidity runoff. This is where the joint capital-and-liquidity cost of a relationship is felt most.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 5 of 14</div>
+            <div class="slide-title">Private <span class="g">Banking</span></div>
+            <div class="slide-body">
+              <p>Private banking serves high-net-worth and ultra-high-net-worth individuals and families, offering a highly personalised mix of banking, lending (often Lombard loans against a securities portfolio), investment management, and estate and tax planning.</p>
+              <p><strong>How it makes money:</strong> a blend of management fees on assets, transaction commissions, and net interest on deposits and lending. It is prized because it is capital-light, fee-rich, and relationship-driven, with lower earnings volatility than trading.</p>
+              <div class="slide-callout">Treasury angle: private-bank deposits can be large and individually mobile &mdash; UHNW clients move size quickly &mdash; so concentration and behavioural assumptions matter. The Observatory&rsquo;s JPM and MS private-bank entities show how deposit-led these balance sheets are.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 6 of 14</div>
+            <div class="slide-title">Wealth &amp; <span class="g">Asset Management</span></div>
+            <div class="slide-body">
+              <p>These two related businesses manage money on behalf of clients. <strong>Wealth management</strong> advises individuals across the wealth spectrum on growing and protecting savings; <strong>asset management</strong> runs investment funds and mandates for institutions such as pension funds and insurers.</p>
+              <p><strong>How it makes money:</strong> recurring fees on assets under management, plus performance fees and brokerage commissions. Because revenue scales with AuM rather than balance sheet, it is highly capital-efficient.</p>
+              <div class="slide-callout">Management fees are recurring and far less market-sensitive than trading revenue, so banks value these businesses at a premium &mdash; they smooth earnings and barely touch capital or liquidity ratios.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 7 of 14</div>
+            <div class="slide-title">Investment <span class="g">Banking</span></div>
+            <div class="slide-body">
+              <p>Investment banking (the advisory and capital-raising arm, often called IBD) helps corporations, institutions, and governments raise capital and execute strategic transactions. The two core franchises are:</p>
+              <ul class="slide-list">
+                <li><strong>Advisory</strong> &mdash; mergers &amp; acquisitions, restructuring, strategic advice</li>
+                <li><strong>Capital markets</strong> &mdash; underwriting new debt (DCM) and equity (ECM) issues and placing them with investors</li>
+              </ul>
+              <p><strong>How it makes money:</strong> almost entirely fees &mdash; a percentage of deal or issuance value. Unlike lending, classic advisory uses essentially no balance sheet and carries no credit risk, though revenue is lumpy and cyclical.</p>
+              <div class="slide-callout">Historically separated from deposit-taking under Glass-Steagall, IBD now sits inside universal banks. Its fee revenue is capital-light, but the financing and underwriting that support deals can put the balance sheet to work.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 8 of 14</div>
+            <div class="slide-title">Global <span class="g">Markets</span></div>
+            <div class="slide-body">
+              <p>Global Markets &mdash; the sales &amp; trading business &mdash; makes markets for institutional clients across asset classes, usually grouped as <strong>FICC</strong> (fixed income, currencies, commodities) and <strong>Equities</strong>. It provides liquidity, executes trades, and helps clients hedge risk.</p>
+              <p><strong>How it makes money:</strong> bid-offer spreads on market-making, financing (including prime brokerage and repo), and gains on positions held. It also houses securities clearing and settlement and sell-side research.</p>
+              <div class="slide-callout">Trading is the most volatile revenue line &mdash; 30&ndash;40% of wholesale revenue in a typical year, but swinging with markets. It is also balance-sheet- and capital-intensive, and a heavy consumer of HQLA for margin and collateral. A natural tension with the liquidity desk.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 9 of 14</div>
+            <div class="slide-title">Treasury &amp; <span class="g">Trade Solutions</span></div>
+            <div class="slide-body">
+              <p>Transaction banking &mdash; often branded Treasury &amp; Trade Solutions or Payments &mdash; provides the operational financial plumbing that corporate and institutional clients use every day:</p>
+              <ul class="slide-list">
+                <li><strong>Cash management</strong> &mdash; collections, payments, pooling, and liquidity concentration across currencies and countries</li>
+                <li><strong>Trade finance</strong> &mdash; letters of credit, guarantees, and supply-chain finance that enable cross-border trade</li>
+                <li><strong>Payments &amp; FX</strong> &mdash; clearing and currency conversion at scale</li>
+              </ul>
+              <p><strong>How it makes money:</strong> high-volume transaction fees plus net interest on the large operating deposit balances it gathers. It is a transaction- and system-intensive source of relatively low-risk fee income.</p>
+              <div class="slide-callout">This business is a Treasury favourite: the operating deposits it brings in are sticky, low-cost, and liquidity-friendly. It funds the bank while earning fees &mdash; a rare combination.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 10 of 14</div>
+            <div class="slide-title">Securities <span class="g">Services</span></div>
+            <div class="slide-body">
+              <p>Securities services (custody and asset servicing) safekeeps and administers the assets of institutional investors &mdash; asset managers, pension funds, insurers, and funds. The market leaders settle trillions of dollars of securities daily across a hundred-plus markets.</p>
+              <p><strong>How it makes money:</strong> custody and administration fees (often basis points on assets under custody), plus ancillary revenue from securities lending, foreign exchange, fund accounting, and transfer agency.</p>
+              <div class="slide-callout">Like transaction banking, custody is capital-light and brings in stable institutional cash balances. Securities lending lets clients earn extra yield on custody assets &mdash; and generates fee income for the bank &mdash; with the bank as agent.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 11 of 14</div>
+            <div class="slide-title">The Bank&rsquo;s Own <span class="g">Treasury</span></div>
+            <div class="slide-body">
+              <p>Distinct from the services sold to clients, every bank has an internal <strong>Treasury</strong> (often the ALM or balance-sheet management function). It is not a client business &mdash; it is core to the bank&rsquo;s model, managing the very asset the bank deals in: money.</p>
+              <p><strong>What it does:</strong> manages liquidity and funding, runs interest-rate risk in the banking book (IRRBB), allocates capital, oversees the HQLA portfolio, and sets internal funds-transfer pricing (FTP) that charges each business for the liquidity and funding it uses.</p>
+              <div class="slide-callout">Treasury is where every other business&rsquo;s balance-sheet footprint comes together. FTP is the mechanism that makes a retail deposit valuable and a wholesale-funded loan expensive &mdash; pricing the liquidity and rate risk each line creates. This is the heart of ALM.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 12 of 14</div>
+            <div class="slide-title">Other <span class="g">Models</span></div>
+            <div class="slide-body">
+              <p>Beyond the universal-bank lines, several specialised models appear across the industry:</p>
+              <ul class="slide-list">
+                <li><strong>Merchant banking</strong> &mdash; provides capital for equity stakes rather than loans; effectively the bank&rsquo;s private-equity arm</li>
+                <li><strong>Islamic banking</strong> &mdash; Shariah-compliant finance structured around profit-sharing and asset-backing rather than interest</li>
+                <li><strong>Digital / neobanks</strong> &mdash; branchless, technology-led retail and SME banking with a low cost base</li>
+                <li><strong>Restricted-licence &amp; private banks</strong> &mdash; narrower charters (e.g. HK Category 2 institutions) focused on treasury, derivatives, or wealth, without a full retail deposit franchise</li>
+              </ul>
+              <div class="slide-callout">The Observatory shows this range in practice &mdash; from full universal banks (HSBC, BOCHK) to a restricted-licence, derivatives-focused entity (Goldman Sachs Asia Bank) whose balance sheet looks nothing like a retail bank&rsquo;s.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 13 of 14</div>
+            <div class="slide-title">How They <span class="g">Make Money</span></div>
+            <div class="slide-body">
+              <div class="slide-twocol">
+                <div>
+                  <div class="slide-col-label">Balance-sheet-led</div>
+                  <ul class="slide-list">
+                    <li>Retail &mdash; deposit &amp; lending spread</li>
+                    <li>Commercial &mdash; business lending + fees</li>
+                    <li>Corporate &mdash; large credit + arranging fees</li>
+                    <li>Global Markets &mdash; spreads + financing</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="slide-col-label">Fee-led (capital-light)</div>
+                  <ul class="slide-list">
+                    <li>Investment banking &mdash; advisory &amp; underwriting</li>
+                    <li>Wealth / asset mgmt &mdash; fees on AuM</li>
+                    <li>Transaction banking &mdash; payment fees + deposits</li>
+                    <li>Securities services &mdash; custody fees</li>
+                  </ul>
+                </div>
+              </div>
+              <p>The universal-bank logic is diversification: spread income is stable but capital-hungry; fee income is capital-light but cyclical or competitive. A balanced mix smooths earnings across the cycle.</p>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Bank Business &middot; Slide 14 of 14</div>
+            <div class="slide-title">Key <span class="g">Takeaways</span></div>
+            <div class="slide-body">
+              <ul class="slide-list">
+                <li>A universal bank is a <strong>federation of businesses</strong>, earning through interest spread, fees, and trading</li>
+                <li><strong>Balance-sheet-led</strong> lines (retail, commercial, corporate, markets) consume liquidity and capital; <strong>fee-led</strong> lines (IB, wealth, transaction banking, custody) barely touch them</li>
+                <li>Stable <strong>deposit-gathering</strong> businesses &mdash; retail and transaction banking &mdash; are the funding engine that Treasury prizes most</li>
+                <li>The bank&rsquo;s own <strong>Treasury</strong> sits beneath all of them, pricing and managing the liquidity, funding, and rate risk each business creates</li>
+              </ul>
+              <div class="slide-callout">Next: the <strong>Liquidity</strong>, <strong>Capital</strong>, and <strong>IRRBB</strong> trainings show how Treasury manages the risks these businesses generate on a single balance sheet.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===== LIQUIDITY SLIDES ===== -->
+        <div class="course-slides" id="slides-liquidity" style="display:none">
+
+          <div class="slide-content active">
+            <div class="slide-tag">Liquidity &middot; Slide 1 of 22</div>
             <div class="slide-title">Why <span class="g">Liquidity</span> Matters</div>
             <div class="slide-body">
-              <p>Under Basel III, banks must hold minimum liquidity to survive market disruption and funding stress. Capital strength alone is not enough &mdash; a solvent bank can still fail if it cannot meet short-term obligations.</p>
+              <p>Under Basel III, banks must hold minimum liquidity to survive market disruption and funding stress. Capital strength alone is not enough &mdash; a solvent bank can still fail if it cannot meet short-term obligations as they fall due.</p>
               <p>Two regulatory ratios anchor the framework:</p>
               <ul class="slide-list">
                 <li><strong>LCR</strong> &mdash; short-term resilience over a 30-day stress horizon</li>
                 <li><strong>NSFR</strong> &mdash; structural funding stability over a one-year horizon</li>
               </ul>
-              <div class="slide-callout">The 2023 failures of Silicon Valley Bank and Credit Suisse were fundamentally liquidity events &mdash; deposit flight outpaced the banks&rsquo; ability to raise cash, even where capital looked adequate.</div>
+              <div class="slide-callout">The 2023 failures of Silicon Valley Bank and Credit Suisse were fundamentally liquidity events &mdash; deposit flight outpaced the banks&rsquo; ability to raise cash, even where capital looked adequate. Liquidity is the first thing to go in a crisis.</div>
             </div>
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 2 of 8</div>
+            <div class="slide-tag">Liquidity &middot; Slide 2 of 22</div>
             <div class="slide-title">What the Regulation Requires</div>
             <div class="slide-body">
               <ul class="slide-list">
                 <li><strong>LCR &ge; 100%</strong> &mdash; enough High-Quality Liquid Assets (HQLA) to cover 30-day net stressed outflows</li>
                 <li><strong>NSFR &ge; 100%</strong> &mdash; Available Stable Funding must cover Required Stable Funding</li>
-                <li><strong>Internal stress tests</strong> &mdash; beyond the regulatory minimums, banks run their own scenarios under the risk appetite framework</li>
+                <li><strong>Internal stress tests</strong> &mdash; beyond regulatory minimums, banks run their own scenarios under the risk appetite framework</li>
               </ul>
-              <p>Regulators expect banks to remain above these thresholds at all times, with management buffers on top. In Hong Kong, the HKMA sets local implementation through the Banking (Liquidity) Rules and SPM module LM-2.</p>
+              <p>Regulators expect banks to remain above these thresholds at all times, with management buffers on top. In Hong Kong, the HKMA sets local implementation through the Banking (Liquidity) Rules and SPM module LM-2. Smaller institutions may instead report the simpler LMR and CFR.</p>
             </div>
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 3 of 8</div>
+            <div class="slide-tag">Liquidity &middot; Slide 3 of 22</div>
             <div class="slide-title">Key <span class="g">Metrics &amp; Formulas</span></div>
             <div class="slide-body">
               <div class="slide-formula">
@@ -2580,85 +3092,287 @@
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 4 of 8</div>
-            <div class="slide-title">Sources of Information</div>
+            <div class="slide-tag">Liquidity &middot; HQLA &middot; Slide 4 of 22</div>
+            <div class="slide-title">What is <span class="g">HQLA?</span></div>
             <div class="slide-body">
-              <div class="slide-twocol">
-                <div>
-                  <div class="slide-col-label">Global</div>
-                  <ul class="slide-list">
-                    <li>BCBS &mdash; LCR standard (BCBS238)</li>
-                    <li>BCBS &mdash; NSFR standard (d295)</li>
-                  </ul>
-                </div>
-                <div>
-                  <div class="slide-col-label">Hong Kong</div>
-                  <ul class="slide-list">
-                    <li>HKMA SPM LM-2</li>
-                    <li>Banking (Liquidity) Rules</li>
-                    <li>HKMA return MA(BS)1E</li>
-                  </ul>
-                </div>
-              </div>
-              <p>For internal frameworks, the bank&rsquo;s own ILAAP (Internal Liquidity Adequacy Assessment Process) documents assumptions, runoff rates, and survival horizons.</p>
+              <p>High-Quality Liquid Assets are the assets a bank can convert into cash <strong>quickly and with little or no loss of value</strong>, even in a stressed market. They are the numerator of the LCR &mdash; the war chest a bank draws down when funding dries up.</p>
+              <p>To qualify, an asset must be fundamentally liquid: low credit and market risk, easy to value, listed on a recognised exchange, and traded in a deep, active market with reliable buyers even during stress. Crucially, it must also be <strong>unencumbered</strong> &mdash; not pledged as collateral or otherwise tied up.</p>
+              <div class="slide-callout">The test is not &ldquo;could I sell this eventually?&rdquo; but &ldquo;could I raise cash against this on the worst morning of the year, in size, without moving the price?&rdquo;</div>
             </div>
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 5 of 8</div>
-            <div class="slide-title">Worked Example &mdash; <span class="g">LCR</span></div>
+            <div class="slide-tag">Liquidity &middot; HQLA &middot; Slide 5 of 22</div>
+            <div class="slide-title">The Three <span class="g">Tiers of HQLA</span></div>
             <div class="slide-body">
-              <p>A bank holds <strong>USD 16bn HQLA</strong> (cash, reserves, govt bonds). Under a 30-day stress it projects:</p>
+              <p>Basel sorts HQLA into quality tiers, each with a regulatory <strong>haircut</strong> and composition limit:</p>
               <ul class="slide-list">
-                <li>Deposit outflows: USD 18bn</li>
-                <li>Wholesale runoff: USD 4bn</li>
-                <li>Inflows (capped at 75%): USD 7bn</li>
+                <li><strong>Level 1</strong> &mdash; the highest quality: cash, central bank reserves, and high-grade sovereign debt. <strong>0% haircut</strong>, no cap. Counts at full value.</li>
+                <li><strong>Level 2A</strong> &mdash; high-grade public-sector and corporate paper. <strong>15% haircut</strong>.</li>
+                <li><strong>Level 2B</strong> &mdash; lower-grade corporate bonds and qualifying equities. <strong>25&ndash;50% haircut</strong>.</li>
+              </ul>
+              <p>Total Level 2 is capped at <strong>40%</strong> of the HQLA stock, and Level 2B within that is capped at <strong>15%</strong>. The caps stop banks from leaning too heavily on the lower-quality, more haircut-prone tiers.</p>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; HQLA &middot; Slide 6 of 22</div>
+            <div class="slide-title">Haircuts and the <span class="g">Weighted HQLA</span></div>
+            <div class="slide-body">
+              <p>A <strong>haircut</strong> is a regulatory discount applied to an asset&rsquo;s market value to reflect the price you might actually realise if forced to sell or repo it under stress. The LCR uses the <strong>weighted</strong> (post-haircut) HQLA stock, not the gross market value.</p>
+              <div class="slide-formula">
+                Weighted HQLA = &Sigma; (Market value &times; (1 &minus; haircut))<br>
+                subject to the 40% Level 2 and 15% Level 2B caps
+                <div class="note">A USD 100m Level 2A bond contributes USD 85m to the stock; a Level 2B holding at a 50% haircut contributes only USD 50m.</div>
+              </div>
+              <div class="slide-callout">Two banks can hold the same nominal securities and report very different HQLA, purely from tier mix and encumbrance. Composition matters as much as size.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; HQLA &middot; Slide 7 of 22</div>
+            <div class="slide-title">Worked Example &mdash; <span class="g">HQLA Stock</span></div>
+            <div class="slide-body">
+              <p>A bank holds the following unencumbered assets:</p>
+              <ul class="slide-list">
+                <li>Central bank reserves &amp; govt bonds (L1): USD 60bn &times; (1 &minus; 0%) = <strong>60.0bn</strong></li>
+                <li>Covered bonds, AA corporates (L2A): USD 20bn &times; (1 &minus; 15%) = <strong>17.0bn</strong></li>
+                <li>BBB corporates, qualifying equities (L2B): USD 8bn &times; (1 &minus; 50%) = <strong>4.0bn</strong></li>
               </ul>
               <div class="slide-formula">
-                Net outflows = 22 &minus; 7 = USD 15bn<br>
-                LCR = 16 &divide; 15 = <strong>106.7%</strong>
-                <div class="note">Above 100% &mdash; compliant, but only a 6.7% buffer. Most banks target 120%+ internally.</div>
+                Pre-cap weighted = 60.0 + 17.0 + 4.0 = USD 81.0bn<br>
+                Level 2 = 21.0bn = 25.9% of stock &mdash; under the 40% cap &#10003;<br>
+                Eligible HQLA = <strong>USD 81.0bn</strong>
+                <div class="note">If Level 2 had exceeded 40%, the excess would be stripped out of the numerator.</div>
               </div>
             </div>
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 6 of 8</div>
-            <div class="slide-title">Levers to <span class="g">Improve LCR</span></div>
+            <div class="slide-tag">Liquidity &middot; Runoffs &middot; Slide 8 of 22</div>
+            <div class="slide-title">What is a <span class="g">Liquidity Runoff?</span></div>
             <div class="slide-body">
+              <p>A <strong>runoff</strong> is the share of a liability assumed to leave the bank during the stress window. The denominator of the LCR is built by applying a <strong>runoff factor</strong> to each funding type, reflecting how &ldquo;flighty&rdquo; that money is under stress.</p>
               <ul class="slide-list">
-                <li><strong>Increase HQLA</strong> &mdash; rotate non-HQLA assets into govt bonds or central bank reserves (raises numerator)</li>
-                <li><strong>Lengthen funding</strong> &mdash; replace &lt;30-day wholesale funding with term funding beyond the horizon (lowers outflows)</li>
-                <li><strong>Grow stable deposits</strong> &mdash; retail and operational deposits carry lower runoff factors than wholesale</li>
-                <li><strong>Reduce undrawn commitments</strong> &mdash; lower committed facilities reduce contingent outflows</li>
+                <li><strong>Stable retail deposits</strong> &mdash; insured, transactional: ~3&ndash;5% runoff</li>
+                <li><strong>Less stable retail</strong> &mdash; uninsured, high-balance, rate-chasing: ~10%+</li>
+                <li><strong>Operational corporate deposits</strong> &mdash; tied to clearing/custody: ~25%</li>
+                <li><strong>Non-operational &amp; wholesale</strong> &mdash; large, mobile balances: 40&ndash;100%</li>
               </ul>
-              <div class="slide-callout">Each lever has a cost: HQLA earns low yield, term funding is more expensive. The art of ALM is meeting the ratio at the lowest drag on net interest margin.</div>
+              <div class="slide-callout">The counter-intuitive lesson: a granular book of small insured retail deposits is <strong>safer</strong> liquidity than a handful of large corporate balances, even though the latter feels more &ldquo;relationship&rdquo; sticky.</div>
             </div>
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 7 of 8</div>
-            <div class="slide-title">Levers to <span class="g">Improve NSFR</span></div>
+            <div class="slide-tag">Liquidity &middot; Runoffs &middot; Slide 9 of 22</div>
+            <div class="slide-title">Calculating <span class="g">Net Cash Outflows</span></div>
             <div class="slide-body">
-              <ul class="slide-list">
-                <li><strong>Extend liability tenor</strong> &mdash; longer-dated funding earns higher ASF factors</li>
-                <li><strong>Grow capital &amp; stable retail deposits</strong> &mdash; both are high-ASF sources</li>
-                <li><strong>Shorten or reduce illiquid assets</strong> &mdash; lower RSF requirement</li>
-                <li><strong>Reduce encumbrance</strong> &mdash; encumbered assets attract higher RSF factors</li>
-              </ul>
-              <p>NSFR and LCR levers often align &mdash; lengthening funding helps both &mdash; but not always. Always model the joint effect.</p>
+              <p>The LCR denominator is total stressed outflows minus capped inflows:</p>
+              <div class="slide-formula">
+                Net outflows = Total outflows &minus; min(Inflows, 75% &times; Outflows)
+                <div class="note">Inflows are capped at 75% of outflows, so a bank can never rely entirely on incoming cash &mdash; it must hold a genuine HQLA buffer.</div>
+              </div>
+              <p>Outflows are built bottom-up: each deposit and funding bucket &times; its runoff factor, plus contingent items &mdash; undrawn committed facilities, derivative margin calls, and rating-downgrade triggers. Inflows come from performing loans maturing in the window and reverse repo unwinds, each with its own inflow factor.</p>
             </div>
           </div>
 
           <div class="slide-content">
-            <div class="slide-tag">Liquidity &middot; Slide 8 of 8</div>
+            <div class="slide-tag">Liquidity &middot; Runoffs &middot; Slide 10 of 22</div>
+            <div class="slide-title">Calibrating <span class="g">Runoff Assumptions</span></div>
+            <div class="slide-body">
+              <p>Regulatory runoff factors are a floor. Internally, banks calibrate their own &mdash; often more severe &mdash; assumptions, and the most credible anchor is <strong>observed behaviour in real crises</strong>.</p>
+              <ul class="slide-list">
+                <li><strong>1997&ndash;98 Asian Financial Crisis</strong> &mdash; currency-peg pressure, regional deposit flight, and the cross-border withdrawal of wholesale funding lines. The reference point for FX and regional-contagion stress in Asia.</li>
+                <li><strong>2008 Global Financial Crisis</strong> &mdash; wholesale and interbank markets froze, securitisation shut, and committed facilities were drawn en masse. The reference point for market-wide funding stress.</li>
+                <li><strong>2023 regional-bank runs</strong> &mdash; social-media-accelerated deposit flight; outflows far faster than the classic 30-day pace.</li>
+              </ul>
+              <div class="slide-callout">Calibration method: pull the actual peak outflow rates each funding segment experienced in these episodes, then set internal assumptions at or above that observed severity. History gives you the tail you cannot see in calm-market data.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Runoffs &middot; Slide 11 of 22</div>
+            <div class="slide-title">Building an <span class="g">Internal Stress Test</span></div>
+            <div class="slide-body">
+              <p>A bank&rsquo;s internal liquidity stress test (the engine of the ILAAP) typically runs three scenario types:</p>
+              <ul class="slide-list">
+                <li><strong>Idiosyncratic</strong> &mdash; a bank-specific shock: a rating downgrade or reputational event triggering deposit flight, while markets stay open</li>
+                <li><strong>Market-wide</strong> &mdash; a systemic freeze where wholesale funding is unavailable to everyone (the GFC template)</li>
+                <li><strong>Combined</strong> &mdash; both at once, usually the binding scenario for the risk appetite</li>
+              </ul>
+              <p>For each, project cumulative net outflows day by day over the horizon and compare against the counterbalancing capacity (HQLA plus reliable contingent sources). The output is a <strong>survival horizon</strong> &mdash; the number of days the bank can withstand the stress before resources are exhausted.</p>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Runoffs &middot; Slide 12 of 22</div>
+            <div class="slide-title">The <span class="g">Survival Horizon</span></div>
+            <div class="slide-body">
+              <p>Internal frameworks express resilience as the period the bank stays cash-positive under stress, not just a point-in-time ratio.</p>
+              <div class="slide-formula">
+                Counterbalancing capacity &ge; Cumulative net outflows<br>
+                for every day t across the survival horizon
+                <div class="note">If the curves cross on day 18, the bank survives 18 days &mdash; and the risk appetite (e.g. &ldquo;survive 30 days idiosyncratic, 90 days combined&rdquo;) tells you whether that is enough.</div>
+              </div>
+              <div class="slide-callout">Regulators set a 30-day LCR. Strong internal frameworks go further &mdash; modelling 90 days or more, because the 2023 runs showed that confidence, once lost, does not wait politely for the regulatory clock.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Day-to-Day &middot; Slide 13 of 22</div>
+            <div class="slide-title">Managing Liquidity <span class="g">Day to Day</span></div>
+            <div class="slide-body">
+              <p>The ratios are the scoreboard; the Treasury desk plays the game daily. The job is to keep the bank funded at the lowest cost while holding enough buffer for a bad day. The core tools:</p>
+              <ul class="slide-list">
+                <li>Secured funding &mdash; <strong>repo</strong> and <strong>reverse repo</strong></li>
+                <li><strong>Central bank reserves</strong> and standing facilities</li>
+                <li><strong>Intercompany funding</strong> within the group</li>
+                <li><strong>Deposits and wholesale funding</strong> as the structural base</li>
+              </ul>
+              <p>The next slides walk through each &mdash; what it is, and how it moves the liquidity position.</p>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Day-to-Day &middot; Slide 14 of 22</div>
+            <div class="slide-title">Repo and <span class="g">Reverse Repo</span></div>
+            <div class="slide-body">
+              <p>A <strong>repurchase agreement (repo)</strong> is a sale of securities with a promise to buy them back later at a slightly higher price &mdash; effectively a <strong>secured loan</strong>, with the securities as collateral. The bank gets cash now and pays the repo rate.</p>
+              <p>A <strong>reverse repo</strong> is the mirror image: the bank lends cash and takes in securities as collateral, earning the repo rate. One desk&rsquo;s repo is the counterparty&rsquo;s reverse repo.</p>
+              <ul class="slide-list">
+                <li><strong>Repo</strong> &mdash; raises cash quickly against HQLA without selling it outright; a primary tool for covering short-term gaps</li>
+                <li><strong>Reverse repo</strong> &mdash; deploys surplus cash at low risk and brings in HQLA-eligible collateral, supporting the buffer</li>
+              </ul>
+              <div class="slide-callout">Repo lets a bank monetise its bond portfolio without losing it &mdash; the bonds keep earning, and the cash plugs the gap. This is why a deep HQLA book is also a funding tool, not just a regulatory line item.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Day-to-Day &middot; Slide 15 of 22</div>
+            <div class="slide-title">Central Bank <span class="g">Cash Reserves</span></div>
+            <div class="slide-body">
+              <p>Reserves held at the central bank are the most liquid asset that exists &mdash; settlement money itself. They count as <strong>Level 1 HQLA at a 0% haircut</strong> and are available instantly to settle obligations.</p>
+              <p>They serve three liquidity roles:</p>
+              <ul class="slide-list">
+                <li><strong>Settlement buffer</strong> &mdash; meeting intraday and end-of-day payment obligations</li>
+                <li><strong>Top-tier HQLA</strong> &mdash; the cleanest possible numerator for the LCR</li>
+                <li><strong>Access to standing facilities</strong> &mdash; the central bank as lender of last resort, against eligible collateral</li>
+              </ul>
+              <div class="slide-callout">Reserves earn little or no yield, so holding them is a deliberate cost paid for certainty. Sizing the reserve balance &mdash; enough for safety, not so much that margin bleeds away &mdash; is a daily ALM judgement.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Day-to-Day &middot; Slide 16 of 22</div>
+            <div class="slide-title">Intercompany <span class="g">Funding</span></div>
+            <div class="slide-body">
+              <p>In a banking group, entities lend to and borrow from each other. <strong>Intercompany funding</strong> is cash a subsidiary or branch receives from its parent or affiliates; <strong>intercompany lending</strong> is cash placed the other way.</p>
+              <p>It is a powerful liquidity tool &mdash; surplus liquidity in one entity can fund a deficit in another &mdash; but it carries specific risks:</p>
+              <ul class="slide-list">
+                <li><strong>Reliability under stress</strong> &mdash; group support may be assumed in good times but constrained when the whole group is stressed</li>
+                <li><strong>Ring-fencing</strong> &mdash; regulators increasingly require local entities to be self-sufficient and may restrict upstreaming</li>
+                <li><strong>Runoff treatment</strong> &mdash; intragroup wholesale funding can attract high runoff factors in the LCR unless genuinely committed</li>
+              </ul>
+              <div class="slide-callout">For branches (e.g. many in Hong Kong), the &ldquo;due to / due from overseas offices&rdquo; lines are often the largest items on the balance sheet &mdash; group funding is the backbone, which is exactly why supervisors watch its stability so closely.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Day-to-Day &middot; Slide 17 of 22</div>
+            <div class="slide-title">Deposits and <span class="g">Wholesale Funding</span></div>
+            <div class="slide-body">
+              <p>The structural funding base sits on a spectrum from sticky to flighty, and the mix directly drives the liquidity buffer a bank must hold:</p>
+              <div class="slide-twocol">
+                <div>
+                  <div class="slide-col-label">Deposits &mdash; the stable core</div>
+                  <ul class="slide-list">
+                    <li>Granular, insured retail balances</li>
+                    <li>Low runoff, high ASF in the NSFR</li>
+                    <li>Cheaper and stickier &mdash; smaller buffer needed</li>
+                  </ul>
+                </div>
+                <div>
+                  <div class="slide-col-label">Wholesale &mdash; the volatile edge</div>
+                  <ul class="slide-list">
+                    <li>Large, concentrated, rate-sensitive</li>
+                    <li>High runoff, low ASF</li>
+                    <li>Flighty under stress &mdash; bigger buffer needed</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-callout">A bank funded by stable deposits can run a leaner HQLA buffer than one reliant on wholesale markets. Funding concentration &mdash; by counterparty, product, or tenor &mdash; is itself a liquidity risk, independent of the headline ratio.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Buffers &amp; Triggers &middot; Slide 18 of 22</div>
+            <div class="slide-title">Buffers Above the <span class="g">Minimum</span></div>
+            <div class="slide-body">
+              <p>Running an LCR at exactly 100% is a trap: a single bad week pushes the bank into breach, and breaches must be reported to supervisors. So banks layer <strong>buffers</strong> on top of the regulatory floor:</p>
+              <ul class="slide-list">
+                <li><strong>Regulatory minimum</strong> &mdash; LCR / NSFR &ge; 100% (the hard floor)</li>
+                <li><strong>Management buffer</strong> &mdash; an internal cushion, e.g. operating target of 120&ndash;130%</li>
+                <li><strong>Risk appetite limit</strong> &mdash; the board-set level the bank commits to stay above</li>
+              </ul>
+              <p>The gap between the operating level and the floor is the room the bank has to absorb stress before action becomes mandatory. Triggers carve that gap into graduated warning zones.</p>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Buffers &amp; Triggers &middot; Slide 19 of 22</div>
+            <div class="slide-title">Early Warning <span class="g">Indicators</span></div>
+            <div class="slide-body">
+              <p><strong>Early Warning Indicators (EWIs)</strong> are metrics monitored to catch liquidity stress <em>before</em> it shows up in the headline ratios. They are the smoke detectors &mdash; designed to fire early, while options are still cheap and plentiful.</p>
+              <ul class="slide-list">
+                <li><strong>Internal</strong> &mdash; LCR trending toward limit, rising funding concentration, deposit outflow pace, declining HQLA, widening intraday peaks</li>
+                <li><strong>Market</strong> &mdash; the bank&rsquo;s CDS spread widening, funding costs rising versus peers, rating-agency watch, share-price stress</li>
+                <li><strong>Behavioural</strong> &mdash; unusual large-depositor activity, drops in deposit roll-over rates</li>
+              </ul>
+              <div class="slide-callout">Good EWIs are forward-looking and have a defined owner, threshold, and escalation path. An indicator no one watches or acts on is not an early warning &mdash; it is an audit finding waiting to happen.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Buffers &amp; Triggers &middot; Slide 20 of 22</div>
+            <div class="slide-title">Management Action <span class="g">Triggers</span></div>
+            <div class="slide-body">
+              <p><strong>Management Action Triggers (MATs)</strong> are pre-defined threshold levels that, once breached, compel a specific, agreed response &mdash; removing hesitation and debate from the moment stress actually hits.</p>
+              <p>They are usually set as a tiered ladder:</p>
+              <ul class="slide-list">
+                <li><strong>Green</strong> &mdash; normal operations, routine monitoring</li>
+                <li><strong>Amber</strong> &mdash; heightened monitoring, daily reporting to Treasury and the CRO, pre-positioning of contingent funding</li>
+                <li><strong>Red</strong> &mdash; invoke the Contingency Funding Plan: draw committed lines, repo the HQLA book, slow asset growth, escalate to the board and supervisor</li>
+              </ul>
+              <div class="slide-callout">The point of a MAT is to decide the response <strong>in calm conditions</strong>, written into governance, so that under stress the team executes a plan rather than inventing one. Pre-commitment beats improvisation when confidence is draining by the hour.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Buffers &amp; Triggers &middot; Slide 21 of 22</div>
+            <div class="slide-title">Setting the <span class="g">Triggers</span></div>
+            <div class="slide-body">
+              <p>Calibrating EWIs and MATs is itself an ALM discipline. A workable approach:</p>
+              <ul class="slide-list">
+                <li><strong>Anchor to risk appetite</strong> &mdash; the red trigger should sit above the regulatory floor with enough room to act before breaching it</li>
+                <li><strong>Back-test against history</strong> &mdash; check where the triggers would have fired in the GFC, the Asian crisis, and 2023; would they have given useful lead time?</li>
+                <li><strong>Space the ladder</strong> &mdash; amber must give genuine warning ahead of red, not fire simultaneously</li>
+                <li><strong>Assign ownership and escalation</strong> &mdash; every trigger needs a named owner, a defined action, and a reporting line into ALCO</li>
+                <li><strong>Review regularly</strong> &mdash; recalibrate as the balance sheet, funding mix, and market conditions evolve</li>
+              </ul>
+              <div class="slide-callout">Triggers set too tight cause alarm fatigue and get ignored; set too loose, they fire when it is already too late. The calibration is the value.</div>
+            </div>
+          </div>
+
+          <div class="slide-content">
+            <div class="slide-tag">Liquidity &middot; Slide 22 of 22</div>
             <div class="slide-title">Key <span class="g">Takeaways</span></div>
             <div class="slide-body">
               <ul class="slide-list">
-                <li>LCR protects the <strong>30-day</strong> horizon; NSFR protects the <strong>1-year</strong> structural profile</li>
-                <li>Both must stay <strong>&ge; 100%</strong>; banks hold internal buffers above</li>
-                <li>Internal stress testing (ILAAP) goes beyond regulatory minimums</li>
-                <li>Every lever trades liquidity safety against margin &mdash; optimisation, not maximisation, is the goal</li>
+                <li><strong>HQLA</strong> is quality-tiered and haircut-adjusted &mdash; composition and encumbrance matter as much as size</li>
+                <li><strong>Runoffs</strong> turn the balance sheet into stressed outflows; calibrate them against real crises, not calm-market data</li>
+                <li><strong>Internal stress testing</strong> extends beyond the 30-day LCR to a survival horizon under idiosyncratic, market-wide, and combined scenarios</li>
+                <li><strong>Day-to-day</strong>, repo, reserves, intercompany, and the deposit/wholesale mix are the levers that keep the bank funded</li>
+                <li><strong>Buffers, EWIs and MATs</strong> convert the framework into pre-committed action before a breach occurs</li>
               </ul>
               <div class="slide-callout">Next: explore the <strong>Capital</strong> and <strong>IRRBB</strong> trainings to see how the three pillars interact on a single balance sheet.</div>
             </div>
@@ -2698,12 +3412,26 @@
           <div class="slide-content"><div class="slide-tag">IRRBB &middot; Slide 8 of 8</div><div class="slide-title">Key Takeaways</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
         </div>
 
+        <!-- ===== FTP SLIDES (stub structure) ===== -->
+        <div class="course-slides" id="slides-ftp" style="display:none">
+          <div class="slide-content active">
+            <div class="slide-tag">FTP &middot; Slide 1 of 6</div>
+            <div class="slide-title">Why <span class="g">FTP</span> Matters</div>
+            <div class="slide-body"><p>Funds Transfer Pricing is the internal mechanism that charges each business for the funding and liquidity it uses, and credits each one for the stable funding it provides. It is how Treasury makes the cost of liquidity and rate risk visible across the bank.</p><div class="slide-callout">Content in development &mdash; full slides coming soon.</div></div>
+          </div>
+          <div class="slide-content"><div class="slide-tag">FTP &middot; Slide 2 of 6</div><div class="slide-title">The Role of FTP</div><div class="slide-body"><p>Transferring interest-rate and liquidity risk from the business lines to a central Treasury book, so each unit is measured on the margin it truly controls.</p><div class="slide-callout">Content in development.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">FTP &middot; Slide 3 of 6</div><div class="slide-title">Building the Curve</div><div class="slide-body"><p>The FTP curve, matched-maturity pricing, and the liquidity premium add-on.</p><div class="slide-callout">Content in development.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">FTP &middot; Slide 4 of 6</div><div class="slide-title">Worked Example</div><div class="slide-body"><div class="slide-callout">Worked calculation in development.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">FTP &middot; Slide 5 of 6</div><div class="slide-title">Behavioural &amp; NMD Treatment</div><div class="slide-body"><p>Pricing non-maturing deposits and prepayable assets through behavioural assumptions.</p><div class="slide-callout">Content in development.</div></div></div>
+          <div class="slide-content"><div class="slide-tag">FTP &middot; Slide 6 of 6</div><div class="slide-title">Key Takeaways</div><div class="slide-body"><div class="slide-callout">Content in development.</div></div></div>
+        </div>
+
         <!-- Controls -->
         <div class="slide-controls">
           <button class="slide-nav-btn" id="slide-prev" onclick="changeSlide(-1)" disabled>&larr; Prev</button>
           <div style="display:flex;align-items:center;gap:20px;">
             <div class="slide-dots" id="slide-dots"></div>
-            <div class="slide-counter" id="slide-counter">1 / 8</div>
+            <div class="slide-counter" id="slide-counter">1 / 14</div>
           </div>
           <button class="slide-nav-btn primary" id="slide-next" onclick="changeSlide(1)">Next &rarr;</button>
         </div>
@@ -2885,7 +3613,7 @@
     document.getElementById('mobileMenu').classList.toggle('open');
   }
 
-  var pages = ['home', 'alm', 'training', 'observatory', 'references', 'about'];
+  var pages = ['home', 'training', 'observatory', 'references', 'about'];
 
   function showPage(page) {
     // Hide all pages
@@ -2905,10 +3633,6 @@
     if (page === 'references') {
       var ref = document.getElementById('nav-ref-desktop');
       if (ref) ref.classList.add('active');
-    }
-    if (page === 'alm') {
-      var alm = document.getElementById('nav-alm-desktop');
-      if (alm) alm.classList.add('active');
     }
     if (page === 'home') {
       var home = document.getElementById('nav-home-desktop');
@@ -2930,7 +3654,6 @@
     // Per-page document title
     var titles = {
       home: 'The ALM Compass — Navigate the Balance Sheet',
-      alm: 'ALM Knowledge Base — The ALM Compass',
       training: 'Training — The ALM Compass',
       observatory: 'The Observatory — The ALM Compass',
       references: 'References — The ALM Compass',
@@ -2938,12 +3661,32 @@
     };
     if (titles[page]) document.title = titles[page];
 
+    // Update URL hash (so the section is shareable/bookmarkable)
+    if (window.history && history.replaceState) {
+      var target = (page === 'home') ? location.pathname + location.search : '#' + page;
+      history.replaceState(null, '', target);
+    }
+
     // Scroll to top
     window.scrollTo(0, 0);
   }
 
+  // Route from the URL hash on load (e.g. almcompass.com/#observatory)
+  function routeFromHash() {
+    var h = (location.hash || '').replace('#', '').toLowerCase();
+    var valid = ['home','training','observatory','references','about'];
+    if (h === 'alm') { showPage('training'); return; }
+    if (h && valid.indexOf(h) !== -1 && h !== 'home') {
+      showPage(h);
+    } else {
+      // default home active state
+      var home = document.getElementById('nav-home-desktop');
+      if (home) home.classList.add('active');
+    }
+  }
+
   // ── TRAINING SLIDESHOW ──
-  var currentCourse = 'liquidity';
+  var currentCourse = 'business';
   var currentSlide = 0;
   var totalSlides = 8;
 
@@ -3089,6 +3832,176 @@
     }, 80);
   }
 
+
+  // ── CURRENCY TOGGLE (HK table) ──
+  // USD/HKD peg 7.78. HK table cells have id="hk-{metric}-{bank}".
+  // Data holds USD and HKD HTML per cell.
+  var hkCellData = {
+    usd: {
+    "hk-total_assets-hsbc": "$1,501.7bn",
+    "hk-customer_deposits-hsbc": "$912.2bn",
+    "hk-intercompany_funding-hsbc": "$49.8bn",
+    "hk-loans_and_advances-hsbc": "$468.1bn",
+    "hk-hqla-hsbc": "$277.6bn",
+    "hk-intercompany_lending-hsbc": "$24.7bn",
+    "hk-cet1_capital-hsbc": "$72.4bn",
+    "hk-total_rwa-hsbc": "$380.2bn",
+    "hk-total_assets-bochk": "$547.2bn",
+    "hk-customer_deposits-bochk": "$378.7bn",
+    "hk-loans_and_advances-bochk": "$219.5bn",
+    "hk-hqla-bochk": "$142.3bn",
+    "hk-cet1_capital-bochk": "$38.0bn",
+    "hk-total_rwa-bochk": "$158.3bn",
+    "hk-total_assets-hangseng": "$233.8bn",
+    "hk-customer_deposits-hangseng": "$164.9bn",
+    "hk-intercompany_funding-hangseng": "$3.6bn",
+    "hk-loans_and_advances-hangseng": "$101.2bn",
+    "hk-hqla-hangseng": "$62.5bn",
+    "hk-intercompany_lending-hangseng": "$6.1bn",
+    "hk-cet1_capital-hangseng": "$15.9bn",
+    "hk-total_rwa-hangseng": "$68.3bn",
+    "hk-total_assets-ms": "$9.4bn",
+    "hk-customer_deposits-ms": "$6.9bn",
+    "hk-intercompany_funding-ms": "$0.8bn",
+    "hk-loans_and_advances-ms": "$5.7bn",
+    "hk-cet1_capital-ms": "$2.2bn",
+    "hk-total_rwa-ms": "$4.9bn",
+    "hk-eve_200bp-ms": "&lt;$0.1bn loss",
+    "hk-total_assets-jpm": "$22.1bn",
+    "hk-customer_deposits-jpm": "$15.2bn",
+    "hk-intercompany_funding-jpm": "$0.4bn",
+    "hk-loans_and_advances-jpm": "$2.6bn",
+    "hk-intercompany_lending-jpm": "$11.7bn",
+    "hk-total_assets-bofa": "$11.7bn",
+    "hk-customer_deposits-bofa": "$6.8bn",
+    "hk-intercompany_funding-bofa": "$4.6bn",
+    "hk-loans_and_advances-bofa": "$2.9bn",
+    "hk-hqla-bofa": "$2.4bn",
+    "hk-intercompany_lending-bofa": "$4.5bn",
+    "hk-total_assets-gs": "$0.2bn",
+    "hk-intercompany_lending-gs": "&lt;$0.1bn",
+    "hk-cet1_capital-gs": "$0.1bn",
+    "hk-total_rwa-gs": "$0.1bn"
+},
+    hkd: {
+    "hk-total_assets-hsbc": "HK$11,683.2bn",
+    "hk-customer_deposits-hsbc": "HK$7,097.0bn",
+    "hk-intercompany_funding-hsbc": "HK$387.7bn",
+    "hk-loans_and_advances-hsbc": "HK$3,641.8bn",
+    "hk-hqla-hsbc": "HK$2,160.0bn",
+    "hk-intercompany_lending-hsbc": "HK$192.4bn",
+    "hk-cet1_capital-hsbc": "HK$563.5bn",
+    "hk-total_rwa-hsbc": "HK$2,957.9bn",
+    "hk-total_assets-bochk": "HK$4,257.2bn",
+    "hk-customer_deposits-bochk": "HK$2,946.2bn",
+    "hk-loans_and_advances-bochk": "HK$1,707.6bn",
+    "hk-hqla-bochk": "HK$1,107.2bn",
+    "hk-cet1_capital-bochk": "HK$295.7bn",
+    "hk-total_rwa-bochk": "HK$1,231.6bn",
+    "hk-total_assets-hangseng": "HK$1,819.1bn",
+    "hk-customer_deposits-hangseng": "HK$1,283.3bn",
+    "hk-intercompany_funding-hangseng": "HK$27.8bn",
+    "hk-loans_and_advances-hangseng": "HK$787.4bn",
+    "hk-hqla-hangseng": "HK$486.2bn",
+    "hk-intercompany_lending-hangseng": "HK$47.5bn",
+    "hk-cet1_capital-hangseng": "HK$123.7bn",
+    "hk-total_rwa-hangseng": "HK$531.5bn",
+    "hk-total_assets-ms": "HK$73.0bn",
+    "hk-customer_deposits-ms": "HK$53.6bn",
+    "hk-intercompany_funding-ms": "HK$6.6bn",
+    "hk-loans_and_advances-ms": "HK$44.2bn",
+    "hk-cet1_capital-ms": "HK$16.8bn",
+    "hk-total_rwa-ms": "HK$38.3bn",
+    "hk-eve_200bp-ms": "&lt;HK$0.1bn loss",
+    "hk-total_assets-jpm": "HK$171.6bn",
+    "hk-customer_deposits-jpm": "HK$118.3bn",
+    "hk-intercompany_funding-jpm": "HK$3.0bn",
+    "hk-loans_and_advances-jpm": "HK$20.5bn",
+    "hk-intercompany_lending-jpm": "HK$91.1bn",
+    "hk-total_assets-bofa": "HK$91.0bn",
+    "hk-customer_deposits-bofa": "HK$52.6bn",
+    "hk-intercompany_funding-bofa": "HK$36.0bn",
+    "hk-loans_and_advances-bofa": "HK$22.6bn",
+    "hk-hqla-bofa": "HK$18.9bn",
+    "hk-intercompany_lending-bofa": "HK$35.1bn",
+    "hk-total_assets-gs": "HK$1.4bn",
+    "hk-intercompany_lending-gs": "&lt;HK$0.1bn",
+    "hk-cet1_capital-gs": "HK$1.0bn",
+    "hk-total_rwa-gs": "HK$0.4bn"
+}
+  };
+
+  var currentCcy = 'usd';
+
+  function setCcy(ccy) {
+    currentCcy = ccy;
+    document.getElementById('ccy-usd').classList.toggle('active', ccy==='usd');
+    document.getElementById('ccy-hkd').classList.toggle('active', ccy==='hkd');
+    var src = (ccy === 'hkd') ? hkCellData.hkd : hkCellData.usd;
+    for (var id in src) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = src[id];
+    }
+    var fn = document.getElementById('obs-fx-note');
+    if (fn) {
+      fn.textContent = (ccy === 'usd')
+        ? 'FX: HKD converted at USD/HKD 7.78 (HK peg, FY2025). Branch USD figures shown as reported; HKD derived. '
+        : 'FX: USD derived from HKD at 7.78. Branch figures (MS Bank Asia, JPM, BofA) shown in native currency where reported. ';
+    }
+  }
+
+  // ── OBSERVATORY REGION TOGGLE ──
+  function selectRegion(region) {
+    document.getElementById('obs-region-hk').classList.toggle('active', region === 'hk');
+    document.getElementById('obs-region-intl').classList.toggle('active', region === 'intl');
+    document.getElementById('obs-tab-hk').classList.toggle('active', region === 'hk');
+    document.getElementById('obs-tab-intl').classList.toggle('active', region === 'intl');
+    if (region === 'intl') renderIntlSlides();
+    else renderObsSlides();
+  }
+
+  // ── INTERNATIONAL SLIDESHOW ──
+  var currentIntlBank = 'jpmc';
+  var currentIntlSlide = 0;
+  var totalIntlSlides = 4;
+
+  function selectBankIntl(bank) {
+    currentIntlBank = bank;
+    currentIntlSlide = 0;
+    document.querySelectorAll('#obs-region-intl .course-card').forEach(function(c){ c.classList.remove('active'); });
+    var card = document.getElementById('bank-card-' + bank);
+    if (card) card.classList.add('active');
+    document.querySelectorAll('#obs-region-intl .bank-slides').forEach(function(s){ s.style.display='none'; });
+    document.getElementById('intlslides-' + bank).style.display = 'block';
+    renderIntlSlides();
+  }
+
+  function renderIntlSlides() {
+    var container = document.getElementById('intlslides-' + currentIntlBank);
+    if (!container) return;
+    var slides = container.querySelectorAll('.slide-content');
+    totalIntlSlides = slides.length;
+    slides.forEach(function(s,i){ s.classList.toggle('active', i===currentIntlSlide); });
+    document.getElementById('intl-progress-fill').style.width = ((currentIntlSlide+1)/totalIntlSlides*100)+'%';
+    document.getElementById('intl-counter').textContent = (currentIntlSlide+1)+' / '+totalIntlSlides;
+    document.getElementById('intl-prev').disabled = currentIntlSlide===0;
+    var nb = document.getElementById('intl-next');
+    if (currentIntlSlide===totalIntlSlides-1){ nb.textContent='Finish'; nb.classList.remove('primary'); }
+    else { nb.innerHTML='Next \u2192'; nb.classList.add('primary'); }
+    var dots = document.getElementById('intl-dots'); dots.innerHTML='';
+    for (var i=0;i<totalIntlSlides;i++){
+      var d=document.createElement('div'); d.className='slide-dot'+(i===currentIntlSlide?' active':'');
+      (function(idx){ d.onclick=function(){ currentIntlSlide=idx; renderIntlSlides(); }; })(i);
+      dots.appendChild(d);
+    }
+  }
+
+  function changeIntlSlide(dir){
+    var n=currentIntlSlide+dir;
+    if (n<0||n>=totalIntlSlides) return;
+    currentIntlSlide=n; renderIntlSlides();
+  }
+
   function changeObsSlide(dir) {
     var next = currentObsSlide + dir;
     if (next < 0 || next >= totalObsSlides) return;
@@ -3100,11 +4013,14 @@
   window.addEventListener('load', function() {
     renderSlides();
     renderObsSlides();
+    renderIntlSlides();
     initReveal();
     countUp();
-    var home = document.getElementById('nav-home-desktop');
-    if (home) home.classList.add('active');
+    routeFromHash();
   });
+
+  // Support browser back/forward and pasted hash links
+  window.addEventListener('hashchange', routeFromHash);
 
 
   // ── SUBSCRIBE MODAL ──
